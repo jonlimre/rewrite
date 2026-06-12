@@ -1,0 +1,10 @@
+{
+  "name": "rewrite",
+  "displayName": "rewrite — Reinsurance Underwriting Toolkit",
+  "description": "Reinsurance underwriting toolkit bundling two skills: regulr (ingest a reinsurance submission and produce the cedent's ground-up loss ratio pricing analysis) and reconintel (benchmark a new reinsurance treaty against an in-force portfolio, clause by clause).",
+  "version": "0.1.0",
+  "author": {
+    "name": "Jon",
+    "email": "jon@re.xyz"
+  }
+}

@@ -1,0 +1,695 @@
+[
+ {
+  "ref": "SMPL-0001",
+  "program": "Acme Casualty GL",
+  "vintage": "2025",
+  "lob": "General Liability",
+  "structure": "Quota Share",
+  "cedent": "Acme Casualty Insurance Co.",
+  "producer": "Sample Re Brokers",
+  "effective": "1 Jan 2025",
+  "economics": {
+   "cession_share": "25%",
+   "ceding_commission": "22% flat",
+   "profit_contingent_commission": "15% over 5% margin",
+   "retention_limit": "$2M per occurrence",
+   "reinsurance_premium": "$40M EPI",
+   "min_deposit_premium": "$30M",
+   "brokerage": "2.0%"
+  },
+  "clauses": {
+   "business_covered": {
+    "summary": "Standard business covered wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for business_covered]",
+    "rating": "green",
+    "notes": ""
+   },
+   "reinsuring_coverage_clause": {
+    "summary": "Standard reinsuring coverage clause wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for reinsuring_coverage_clause]",
+    "rating": "green",
+    "notes": ""
+   },
+   "territory": {
+    "summary": "Standard territory wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for territory]",
+    "rating": "green",
+    "notes": ""
+   },
+   "special_acceptances": {
+    "summary": "Narrow; affirmative written consent only.",
+    "verbatim_excerpt": "No risk shall be bound without the Reinsurer's prior written consent.",
+    "rating": "green",
+    "notes": ""
+   },
+   "original_conditions": {
+    "summary": "Standard original conditions wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for original_conditions]",
+    "rating": "green",
+    "notes": ""
+   },
+   "exclusions_general": {
+    "summary": "Standard exclusions general wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for exclusions_general]",
+    "rating": "green",
+    "notes": ""
+   },
+   "exclusions_endorsements": {
+    "summary": "Standard exclusions endorsements wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for exclusions_endorsements]",
+    "rating": "green",
+    "notes": ""
+   },
+   "term_commencement": {
+    "summary": "Standard term commencement wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for term_commencement]",
+    "rating": "green",
+    "notes": ""
+   },
+   "special_termination": {
+    "summary": "Standard special termination wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for special_termination]",
+    "rating": "green",
+    "notes": ""
+   },
+   "runoff_vs_cutoff": {
+    "summary": "Cut-off default at termination.",
+    "verbatim_excerpt": "...losses shall be settled on a cut-off basis...",
+    "rating": "green",
+    "notes": ""
+   },
+   "sunset": {
+    "summary": "36-month sunset.",
+    "verbatim_excerpt": "No claim after 36 months from expiry.",
+    "rating": "green",
+    "notes": ""
+   },
+   "loss_occurrence_def": {
+    "summary": "Standard loss occurrence def wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for loss_occurrence_def]",
+    "rating": "green",
+    "notes": ""
+   },
+   "losses_lae": {
+    "summary": "Standard losses lae wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for losses_lae]",
+    "rating": "green",
+    "notes": ""
+   },
+   "ecl_eco": {
+    "summary": "Standard ecl eco wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for ecl_eco]",
+    "rating": "green",
+    "notes": ""
+   },
+   "loss_settlements": {
+    "summary": "Standard loss settlements wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for loss_settlements]",
+    "rating": "green",
+    "notes": ""
+   },
+   "salvage_subrogation": {
+    "summary": "Standard salvage subrogation wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for salvage_subrogation]",
+    "rating": "green",
+    "notes": ""
+   },
+   "aggregate_cat_caps": {
+    "summary": "Hard 150% loss-ratio cap.",
+    "verbatim_excerpt": "Reinsurer's liability shall not exceed 150% of net premium.",
+    "rating": "green",
+    "notes": ""
+   },
+   "reports_remittances": {
+    "summary": "Standard reports remittances wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for reports_remittances]",
+    "rating": "green",
+    "notes": ""
+   },
+   "account_settlement_timing": {
+    "summary": "Standard account settlement timing wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for account_settlement_timing]",
+    "rating": "green",
+    "notes": ""
+   },
+   "funding_collateral": {
+    "summary": "Trust funds 110% of obligations incl. IBNR; 90% premium funded in; release only above 102%.",
+    "verbatim_excerpt": "Reinsurer shall fund a trust equal to 110% of Outstanding Obligations including IBNR...",
+    "rating": "green",
+    "notes": "Best-in-class collateral."
+   },
+   "late_payments": {
+    "summary": "Mutual interest at SOFR+2% after 30 days.",
+    "verbatim_excerpt": "Overdue balances bear interest...",
+    "rating": "green",
+    "notes": ""
+   },
+   "offset": {
+    "summary": "Standard offset wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for offset]",
+    "rating": "green",
+    "notes": ""
+   },
+   "currency_taxes": {
+    "summary": "Standard currency taxes wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for currency_taxes]",
+    "rating": "green",
+    "notes": ""
+   },
+   "key_definitions": {
+    "summary": "Standard key definitions wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for key_definitions]",
+    "rating": "green",
+    "notes": ""
+   },
+   "insolvency": {
+    "summary": "Standard insolvency wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for insolvency]",
+    "rating": "green",
+    "notes": ""
+   },
+   "arbitration": {
+    "summary": "Standard arbitration wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for arbitration]",
+    "rating": "green",
+    "notes": ""
+   },
+   "service_of_suit": {
+    "summary": "Standard service of suit wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for service_of_suit]",
+    "rating": "green",
+    "notes": ""
+   },
+   "governing_law": {
+    "summary": "Standard governing law wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for governing_law]",
+    "rating": "green",
+    "notes": ""
+   },
+   "access_to_records": {
+    "summary": "Standard access to records wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for access_to_records]",
+    "rating": "green",
+    "notes": ""
+   },
+   "confidentiality": {
+    "summary": "Standard confidentiality wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for confidentiality]",
+    "rating": "green",
+    "notes": ""
+   },
+   "errors_omissions": {
+    "summary": "Standard errors omissions wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for errors_omissions]",
+    "rating": "green",
+    "notes": ""
+   },
+   "sanctions_clause": {
+    "summary": "Standard sanctions clause wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for sanctions_clause]",
+    "rating": "green",
+    "notes": ""
+   },
+   "entire_agreement": {
+    "summary": "Standard entire agreement wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for entire_agreement]",
+    "rating": "green",
+    "notes": ""
+   },
+   "notices_execution": {
+    "summary": "Standard notices execution wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for notices_execution]",
+    "rating": "green",
+    "notes": ""
+   },
+   "intermediary": {
+    "summary": "Standard intermediary wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for intermediary]",
+    "rating": "green",
+    "notes": ""
+   }
+  }
+ },
+ {
+  "ref": "SMPL-0002",
+  "program": "Globex Property Cat",
+  "vintage": "2025",
+  "lob": "Commercial Property",
+  "structure": "Quota Share",
+  "cedent": "Globex Mutual",
+  "producer": "Sample Re Brokers",
+  "effective": "1 Jan 2025",
+  "economics": {
+   "cession_share": "30%",
+   "ceding_commission": "20% flat",
+   "profit_contingent_commission": "none",
+   "retention_limit": "$5M per risk",
+   "reinsurance_premium": "$60M EPI",
+   "min_deposit_premium": "$48M",
+   "brokerage": "2.5%"
+  },
+  "clauses": {
+   "business_covered": {
+    "summary": "Standard business covered wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for business_covered]",
+    "rating": "green",
+    "notes": ""
+   },
+   "reinsuring_coverage_clause": {
+    "summary": "Standard reinsuring coverage clause wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for reinsuring_coverage_clause]",
+    "rating": "green",
+    "notes": ""
+   },
+   "territory": {
+    "summary": "Standard territory wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for territory]",
+    "rating": "green",
+    "notes": ""
+   },
+   "special_acceptances": {
+    "summary": "Standard special acceptances wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for special_acceptances]",
+    "rating": "green",
+    "notes": ""
+   },
+   "original_conditions": {
+    "summary": "Standard original conditions wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for original_conditions]",
+    "rating": "green",
+    "notes": ""
+   },
+   "exclusions_general": {
+    "summary": "Standard exclusions general wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for exclusions_general]",
+    "rating": "green",
+    "notes": ""
+   },
+   "exclusions_endorsements": {
+    "summary": "Standard exclusions endorsements wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for exclusions_endorsements]",
+    "rating": "green",
+    "notes": ""
+   },
+   "term_commencement": {
+    "summary": "Standard term commencement wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for term_commencement]",
+    "rating": "green",
+    "notes": ""
+   },
+   "special_termination": {
+    "summary": "Standard special termination wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for special_termination]",
+    "rating": "green",
+    "notes": ""
+   },
+   "runoff_vs_cutoff": {
+    "summary": "Standard runoff vs cutoff wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for runoff_vs_cutoff]",
+    "rating": "green",
+    "notes": ""
+   },
+   "sunset": {
+    "summary": "Standard sunset wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for sunset]",
+    "rating": "green",
+    "notes": ""
+   },
+   "loss_occurrence_def": {
+    "summary": "168-hour clause + named-storm aggregation.",
+    "verbatim_excerpt": "Loss Occurrence... 168 consecutive hours; named storm per advisory.",
+    "rating": "green",
+    "notes": "Best-in-class cat aggregation."
+   },
+   "losses_lae": {
+    "summary": "Standard losses lae wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for losses_lae]",
+    "rating": "green",
+    "notes": ""
+   },
+   "ecl_eco": {
+    "summary": "Standard ecl eco wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for ecl_eco]",
+    "rating": "green",
+    "notes": ""
+   },
+   "loss_settlements": {
+    "summary": "Standard loss settlements wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for loss_settlements]",
+    "rating": "green",
+    "notes": ""
+   },
+   "salvage_subrogation": {
+    "summary": "Standard salvage subrogation wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for salvage_subrogation]",
+    "rating": "green",
+    "notes": ""
+   },
+   "aggregate_cat_caps": {
+    "summary": "Per-occurrence + annual aggregate cap.",
+    "verbatim_excerpt": "Annual aggregate limit of $X...",
+    "rating": "green",
+    "notes": ""
+   },
+   "reports_remittances": {
+    "summary": "45-day reporting lag.",
+    "verbatim_excerpt": "Accounts rendered within 45 days.",
+    "rating": "yellow",
+    "notes": ""
+   },
+   "account_settlement_timing": {
+    "summary": "Standard account settlement timing wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for account_settlement_timing]",
+    "rating": "green",
+    "notes": ""
+   },
+   "funding_collateral": {
+    "summary": "Standard funding collateral wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for funding_collateral]",
+    "rating": "green",
+    "notes": ""
+   },
+   "late_payments": {
+    "summary": "Standard late payments wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for late_payments]",
+    "rating": "green",
+    "notes": ""
+   },
+   "offset": {
+    "summary": "This-contract-only offset.",
+    "verbatim_excerpt": "Offset limited to this Agreement.",
+    "rating": "yellow",
+    "notes": ""
+   },
+   "currency_taxes": {
+    "summary": "Standard currency taxes wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for currency_taxes]",
+    "rating": "green",
+    "notes": ""
+   },
+   "key_definitions": {
+    "summary": "Standard key definitions wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for key_definitions]",
+    "rating": "green",
+    "notes": ""
+   },
+   "insolvency": {
+    "summary": "Standard insolvency wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for insolvency]",
+    "rating": "green",
+    "notes": ""
+   },
+   "arbitration": {
+    "summary": "Standard arbitration wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for arbitration]",
+    "rating": "green",
+    "notes": ""
+   },
+   "service_of_suit": {
+    "summary": "Standard service of suit wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for service_of_suit]",
+    "rating": "green",
+    "notes": ""
+   },
+   "governing_law": {
+    "summary": "Standard governing law wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for governing_law]",
+    "rating": "green",
+    "notes": ""
+   },
+   "access_to_records": {
+    "summary": "Standard access to records wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for access_to_records]",
+    "rating": "green",
+    "notes": ""
+   },
+   "confidentiality": {
+    "summary": "Standard confidentiality wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for confidentiality]",
+    "rating": "green",
+    "notes": ""
+   },
+   "errors_omissions": {
+    "summary": "Standard errors omissions wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for errors_omissions]",
+    "rating": "green",
+    "notes": ""
+   },
+   "sanctions_clause": {
+    "summary": "Standard sanctions clause wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for sanctions_clause]",
+    "rating": "green",
+    "notes": ""
+   },
+   "entire_agreement": {
+    "summary": "Standard entire agreement wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for entire_agreement]",
+    "rating": "green",
+    "notes": ""
+   },
+   "notices_execution": {
+    "summary": "Standard notices execution wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for notices_execution]",
+    "rating": "green",
+    "notes": ""
+   },
+   "intermediary": {
+    "summary": "Standard intermediary wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for intermediary]",
+    "rating": "green",
+    "notes": ""
+   }
+  }
+ },
+ {
+  "ref": "SMPL-0003",
+  "program": "Initech Commercial Auto",
+  "vintage": "2025",
+  "lob": "Commercial Auto",
+  "structure": "Quota Share",
+  "cedent": "Initech Insurance",
+  "producer": "Sample Re Brokers",
+  "effective": "1 Jan 2025",
+  "economics": {
+   "cession_share": "35%",
+   "ceding_commission": "24% flat",
+   "profit_contingent_commission": "10% over 8%",
+   "retention_limit": "$1M CSL",
+   "reinsurance_premium": "$50M EPI",
+   "min_deposit_premium": "$40M",
+   "brokerage": "2.0%"
+  },
+  "clauses": {
+   "business_covered": {
+    "summary": "Standard business covered wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for business_covered]",
+    "rating": "green",
+    "notes": ""
+   },
+   "reinsuring_coverage_clause": {
+    "summary": "Standard reinsuring coverage clause wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for reinsuring_coverage_clause]",
+    "rating": "green",
+    "notes": ""
+   },
+   "territory": {
+    "summary": "Standard territory wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for territory]",
+    "rating": "green",
+    "notes": ""
+   },
+   "special_acceptances": {
+    "summary": "Standard special acceptances wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for special_acceptances]",
+    "rating": "green",
+    "notes": ""
+   },
+   "original_conditions": {
+    "summary": "Standard original conditions wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for original_conditions]",
+    "rating": "green",
+    "notes": ""
+   },
+   "exclusions_general": {
+    "summary": "Standard exclusions general wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for exclusions_general]",
+    "rating": "green",
+    "notes": ""
+   },
+   "exclusions_endorsements": {
+    "summary": "Standard exclusions endorsements wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for exclusions_endorsements]",
+    "rating": "green",
+    "notes": ""
+   },
+   "term_commencement": {
+    "summary": "Standard term commencement wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for term_commencement]",
+    "rating": "green",
+    "notes": ""
+   },
+   "special_termination": {
+    "summary": "Standard special termination wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for special_termination]",
+    "rating": "green",
+    "notes": ""
+   },
+   "runoff_vs_cutoff": {
+    "summary": "Standard runoff vs cutoff wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for runoff_vs_cutoff]",
+    "rating": "green",
+    "notes": ""
+   },
+   "sunset": {
+    "summary": "Standard sunset wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for sunset]",
+    "rating": "green",
+    "notes": ""
+   },
+   "loss_occurrence_def": {
+    "summary": "Standard loss occurrence def wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for loss_occurrence_def]",
+    "rating": "green",
+    "notes": ""
+   },
+   "losses_lae": {
+    "summary": "Standard losses lae wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for losses_lae]",
+    "rating": "green",
+    "notes": ""
+   },
+   "ecl_eco": {
+    "summary": "Tight ECO/XPL $1M sublimit, 90% co-participation.",
+    "verbatim_excerpt": "ECO limited to $1,000,000 and 90%...",
+    "rating": "green",
+    "notes": "Best-in-class ECO."
+   },
+   "loss_settlements": {
+    "summary": "Meaningful claims-cooperation rights.",
+    "verbatim_excerpt": "Company shall consult Reinsurer on claims exceeding...",
+    "rating": "green",
+    "notes": ""
+   },
+   "salvage_subrogation": {
+    "summary": "Standard salvage subrogation wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for salvage_subrogation]",
+    "rating": "green",
+    "notes": ""
+   },
+   "aggregate_cat_caps": {
+    "summary": "Standard aggregate cat caps wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for aggregate_cat_caps]",
+    "rating": "green",
+    "notes": ""
+   },
+   "reports_remittances": {
+    "summary": "45-day reporting lag.",
+    "verbatim_excerpt": "Accounts within 45 days.",
+    "rating": "yellow",
+    "notes": ""
+   },
+   "account_settlement_timing": {
+    "summary": "Standard account settlement timing wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for account_settlement_timing]",
+    "rating": "green",
+    "notes": ""
+   },
+   "funding_collateral": {
+    "summary": "Standard funding collateral wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for funding_collateral]",
+    "rating": "green",
+    "notes": ""
+   },
+   "late_payments": {
+    "summary": "Standard late payments wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for late_payments]",
+    "rating": "green",
+    "notes": ""
+   },
+   "offset": {
+    "summary": "Standard offset wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for offset]",
+    "rating": "green",
+    "notes": ""
+   },
+   "currency_taxes": {
+    "summary": "Standard currency taxes wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for currency_taxes]",
+    "rating": "green",
+    "notes": ""
+   },
+   "key_definitions": {
+    "summary": "Standard key definitions wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for key_definitions]",
+    "rating": "green",
+    "notes": ""
+   },
+   "insolvency": {
+    "summary": "Standard insolvency wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for insolvency]",
+    "rating": "green",
+    "notes": ""
+   },
+   "arbitration": {
+    "summary": "Standard arbitration wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for arbitration]",
+    "rating": "green",
+    "notes": ""
+   },
+   "service_of_suit": {
+    "summary": "Standard service of suit wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for service_of_suit]",
+    "rating": "green",
+    "notes": ""
+   },
+   "governing_law": {
+    "summary": "Standard governing law wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for governing_law]",
+    "rating": "green",
+    "notes": ""
+   },
+   "access_to_records": {
+    "summary": "Standard access to records wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for access_to_records]",
+    "rating": "green",
+    "notes": ""
+   },
+   "confidentiality": {
+    "summary": "Standard confidentiality wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for confidentiality]",
+    "rating": "green",
+    "notes": ""
+   },
+   "errors_omissions": {
+    "summary": "Standard errors omissions wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for errors_omissions]",
+    "rating": "green",
+    "notes": ""
+   },
+   "sanctions_clause": {
+    "summary": "Standalone modern sanctions clause.",
+    "verbatim_excerpt": "No coverage where prohibited by sanctions of US/UK/EU/UN...",
+    "rating": "green",
+    "notes": ""
+   },
+   "entire_agreement": {
+    "summary": "Standard entire agreement wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for entire_agreement]",
+    "rating": "green",
+    "notes": ""
+   },
+   "notices_execution": {
+    "summary": "Standard notices execution wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for notices_execution]",
+    "rating": "green",
+    "notes": ""
+   },
+   "intermediary": {
+    "summary": "Standard intermediary wording (sample).",
+    "verbatim_excerpt": "[sample verbatim for intermediary]",
+    "rating": "green",
+    "notes": ""
+   }
+  }
+ }
+]

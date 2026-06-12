@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>reconintel — Treaty Benchmark</title>
+<style>
+:root{
+  --green:#1a9850; --greenbg:#e7f5ec; --yellow:#d9a006; --yellowbg:#fdf6e3;
+  --red:#d6371f; --redbg:#fdecea; --na:#9aa0a6; --nabg:#f3f4f5;
+  --ink:#1f2328; --muted:#6a737d; --line:#e3e6ea; --bg:#f6f8fa; --card:#fff; --accent:#0b5cad;
+}
+*{box-sizing:border-box}
+body{font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);margin:0}
+.wrap{max-width:1200px;margin:0 auto;padding:28px 22px 80px}
+h1{font-size:22px;margin:0 0 2px}
+h2.sec{font-size:16px;margin:30px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--line)}
+h3.grp{font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin:22px 0 8px}
+.sub{color:var(--muted);font-size:13px;margin-bottom:18px}
+.cards{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0 6px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px;min-width:140px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+.card .n{font-size:26px;font-weight:700;line-height:1}
+.card .l{font-size:12px;color:var(--muted);margin-top:5px}
+.card.r .n{color:var(--red)} .card.g .n{color:var(--green)} .card.acc .n{color:var(--accent)}
+.meterwrap{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px;min-width:220px;flex:1}
+.bar{height:12px;border-radius:6px;overflow:hidden;display:flex;background:var(--nabg);margin-top:8px}
+.bar i{display:block;height:100%}
+.econ{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px}
+.econ .e{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:12px}
+.econ .e b{display:block;color:var(--muted);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.03em}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:8px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#fafbfc;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700}
+tr:last-child td{border-bottom:none}
+.rowhead{font-weight:600;width:210px}
+.chip{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;text-transform:uppercase;letter-spacing:.03em}
+.chip.green{background:var(--greenbg);color:var(--green)} .chip.yellow{background:var(--yellowbg);color:var(--yellow)}
+.chip.red{background:var(--redbg);color:var(--red)} .chip.na{background:var(--nabg);color:var(--na)}
+.verdict{font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;white-space:nowrap}
+.v-below{background:var(--redbg);color:var(--red)} .v-not{background:#efe9ff;color:#6b3fd1}
+.v-matches{background:var(--greenbg);color:var(--green)} .v-exceeds{background:#e6f0fb;color:var(--accent)}
+.lb{border-left:4px solid var(--na)} .lb.green{border-left-color:var(--green)} .lb.yellow{border-left-color:var(--yellow)}
+.lb.red{border-left-color:var(--red)} .lb.na{border-left-color:var(--na)}
+.sm{font-size:12.5px;color:var(--ink)} .mut{color:var(--muted);font-size:12px}
+.exrow{font-size:12px;color:var(--muted);margin-top:3px}
+.exrow b{color:var(--ink);font-weight:600}
+.cell{cursor:pointer}
+.verb{display:none;margin-top:8px;padding:10px 12px;background:#fbfcfd;border:1px dashed var(--line);border-radius:8px;font-size:12.5px}
+.verb.show{display:block}
+.verb .q{display:block;margin:4px 0;padding-left:10px;border-left:3px solid var(--line);color:#333;font-style:italic}
+.verb .lbl2{font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-top:8px}
+.controls{display:flex;gap:8px;align-items:center;margin:14px 0 4px;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:6px 12px;font-size:12.5px;cursor:pointer}
+.btn.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.legend{font-size:12px;color:var(--muted);margin-left:auto}
+.legend span{margin-left:10px}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:3px;vertical-align:middle}
+.empty{color:var(--muted);font-style:italic;padding:10px 12px}
+footer{margin-top:40px;color:var(--muted);font-size:12px;border-top:1px solid var(--line);padding-top:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 id="title">Treaty Benchmark</h1>
+  <div class="sub" id="subtitle"></div>
+  <div class="cards" id="cards"></div>
+  <div class="econ" id="econ"></div>
+
+  <h2 class="sec">Focus Areas <span class="mut" id="focusmeta"></span></h2>
+  <div class="sub">Clauses where this treaty's language is <b>below best-in-class</b> or <b>not addressed</b> — start the review here.</div>
+  <div id="focus"></div>
+
+  <h2 class="sec">Full Clause Benchmark</h2>
+  <div class="controls">
+    <button class="btn on" id="bAll">All clauses</button>
+    <button class="btn" id="bFocus">Focus only</button>
+    <span class="legend">
+      <span><span class="dot" style="background:var(--green)"></span>favorable</span>
+      <span><span class="dot" style="background:var(--yellow)"></span>market</span>
+      <span><span class="dot" style="background:var(--red)"></span>loose</span>
+      <span><span class="dot" style="background:var(--na)"></span>n/a</span>
+    </span>
+  </div>
+  <div id="matrix"></div>
+
+  <footer id="foot"></footer>
+</div>
+
+<script>
+const DATA = __DATA__;
+const esc = s => (s==null?"":(""+s)).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const M = DATA.meta;
+const VERDLBL = {below:"Below best-in-class",not_addressed:"Not addressed",matches:"Meets best-in-class",exceeds:"New benchmark",no_peers:"No peer"};
+const VERDCLS = {below:"v-below",not_addressed:"v-not",matches:"v-matches",exceeds:"v-exceeds",no_peers:"v-not"};
+
+document.title = "reconintel — " + (M.program||"Treaty") + " " + (M.vintage||"");
+document.getElementById("title").textContent = (M.program||"New Treaty") + " " + (M.vintage||"");
+document.getElementById("subtitle").innerHTML =
+  esc([M.lob, M.structure, M.cedent].filter(Boolean).join("  ·  ")) +
+  (M.producer?("  ·  broker: "+esc(M.producer)):"") + (M.effective?("  ·  "+esc(M.effective)):"") +
+  (M.ref?("  ·  "+esc(M.ref)):"");
+
+const s = M.score;
+const TOTAL = (s.g+s.y+s.r+s.n) || 1;
+document.getElementById("cards").innerHTML = [
+  `<div class="meterwrap"><div class="l mut">Favorability to Cover Re</div>
+     <div class="n" style="font-size:26px;font-weight:700">${s.pct}<span style="font-size:14px;color:var(--muted)">/100</span></div>
+     <div class="bar"><i style="width:${s.g/TOTAL*100}%;background:var(--green)"></i><i style="width:${s.y/TOTAL*100}%;background:var(--yellow)"></i><i style="width:${s.r/TOTAL*100}%;background:var(--red)"></i><i style="width:${s.n/TOTAL*100}%;background:var(--na)"></i></div>
+     <div class="l" style="margin-top:6px">🟢 ${s.g} &nbsp; 🟡 ${s.y} &nbsp; 🔴 ${s.r} &nbsp; n/a ${s.n}</div></div>`,
+  `<div class="card ${M.focusCount>0?'r':'g'}"><div class="n">${M.focusCount}</div><div class="l">Below best-in-class (all LOBs)</div></div>`,
+  `<div class="card ${M.lobFocusCount>0?'r':'g'}"><div class="n">${M.lobFocusCount}</div><div class="l">Below best-in-class in ${esc(M.lob)}</div></div>`,
+  `<div class="card r"><div class="n">${s.r}</div><div class="l">Loose (🔴) clauses</div></div>`,
+  `<div class="card acc"><div class="n">${M.corpusCount}</div><div class="l">Benchmarked vs treaties</div></div>`,
+  `<div class="card"><div class="n">${M.lobPeers}</div><div class="l">Peers in ${esc(M.lob)}</div></div>`
+].join("");
+
+// economics
+const econ = (DATA.econ||[]).filter(e=>e[1]&&(""+e[1]).trim().length);
+document.getElementById("econ").innerHTML = econ.length
+  ? econ.map(e=>`<div class="e"><b>${esc(e[0])}</b>${esc(e[1])}</div>`).join("")
+  : `<div class="mut">No economics captured in the I&L extract.</div>`;
+
+// render one best-in-class cell from a {rating, exemplars[]} object
+function bestCell(best, emptyMsg){
+  if(!best || !best.exemplars || !best.exemplars.length)
+    return `<span class="mut">${esc(emptyMsg||"No portfolio example.")}</span>`;
+  const e = best.exemplars[0];
+  const more = best.exemplars.length>1 ? ` <span class="mut">+${best.exemplars.length-1} more</span>` : "";
+  return `<span class="chip ${best.rating}">${best.rating}</span> <b>${esc(e.program)} ${esc(e.vintage)}</b>${more}`
+    + (e.summary?`<div class="exrow">${esc(e.summary)}</div>`:"");
+}
+
+function exemplarVerb(label, e){
+  let h = `<div class="lbl2">${esc(label)} — ${esc(e.program)} ${esc(e.vintage)} (${esc(e.structure)}${e.sameLob?"":", "+esc(e.lob)})</div>`;
+  h += `<span class="q">${e.verbatim?esc(e.verbatim):"<i>— see contract —</i>"}</span>`;
+  if(e.notes) h += `<div class="mut">${esc(e.notes)}</div>`;
+  return h;
+}
+function verbPanel(uid,rw){
+  let h = `<div class="verb" id="v_${uid}">`;
+  h += `<div class="lbl2">This treaty</div>`;
+  h += `<span class="q">${rw.newVerbatim?esc(rw.newVerbatim):"<i>— no language extracted —</i>"}</span>`;
+  if(rw.newNotes) h += `<div class="mut">${esc(rw.newNotes)}</div>`;
+  const a = rw.allBest.exemplars && rw.allBest.exemplars[0];
+  const l = rw.lobBest.exemplars && rw.lobBest.exemplars[0];
+  if(a) h += exemplarVerb("Best in book (all LOBs)", a);
+  // only show the same-LOB exemplar separately when it's a different treaty from the all-book best
+  if(l && (!a || l.ref!==a.ref)) h += exemplarVerb("Best in "+(M.lob||"same LOB"), l);
+  h += `</div>`;
+  return h;
+}
+
+function rowHtml(key,rw,scope){
+  const v = rw.verdict; const uid = scope+"_"+key;
+  const lv = rw.lobVerdict;
+  const lobTag = (lv==='below'||lv==='not_addressed')
+    ? ` <span class="verdict ${VERDCLS[lv]}" style="font-size:10px;padding:1px 6px">vs ${esc(M.lob||'LOB')}: ${lv==='below'?'below':'not addr.'}</span>` : "";
+  return `<tr class="lb ${rw.newRating}" data-focus="${(v==='below'||v==='not_addressed')?1:0}">
+    <td class="rowhead">${esc(rw.label)}</td>
+    <td class="cell" onclick="toggle('${uid}')">
+       <span class="chip ${rw.newRating}">${rw.newRating}</span>
+       ${rw.newSummary?`<div class="sm" style="margin-top:4px">${esc(rw.newSummary)}</div>`:""}
+       ${verbPanel(uid,rw)}
+    </td>
+    <td>${bestCell(rw.allBest, "No portfolio example.")}</td>
+    <td>${bestCell(rw.lobBest, "No "+(M.lob||"same-LOB")+" peer rates this.")}${lobTag}</td>
+    <td><span class="verdict ${VERDCLS[v]}">${VERDLBL[v]}</span></td>
+  </tr>`;
+}
+function toggle(key){ const el=document.getElementById("v_"+key); if(el) el.classList.toggle("show"); }
+
+// ---- Focus table ----
+const ORD={red:0,na:1,yellow:2,green:3};
+const allKeys=[]; DATA.sections.forEach(sec=>sec.keys.forEach(k=>allKeys.push(k)));
+const focusKeys = allKeys.filter(k=>{const v=DATA.rows[k].verdict; return v==='below'||v==='not_addressed';})
+  .sort((a,b)=>ORD[DATA.rows[a].newRating]-ORD[DATA.rows[b].newRating]);
+document.getElementById("focusmeta").textContent = `— ${focusKeys.length} of ${allKeys.length} clauses`;
+if(focusKeys.length){
+  document.getElementById("focus").innerHTML =
+    `<table><thead><tr><th>Clause</th><th>This treaty</th><th>Best in book (all LOBs)</th><th>Best in ${esc(M.lob||"same LOB")}</th><th>Gap (vs book)</th></tr></thead><tbody>`
+    + focusKeys.map(k=>rowHtml(k,DATA.rows[k],"f")).join("") + `</tbody></table>`;
+} else {
+  document.getElementById("focus").innerHTML = `<div class="empty">This treaty meets or beats best-in-class on every clause. Nothing flagged.</div>`;
+}
+
+// ---- Full matrix by section ----
+let mh="";
+DATA.sections.forEach(sec=>{
+  mh += `<h3 class="grp">${esc(sec.t)}</h3>`;
+  mh += `<table class="mtab"><thead><tr><th>Clause</th><th>This treaty</th><th>Best in book (all LOBs)</th><th>Best in ${esc(M.lob||"same LOB")}</th><th>Gap (vs book)</th></tr></thead><tbody>`;
+  mh += sec.keys.map(k=>rowHtml(k,DATA.rows[k],"m")).join("");
+  mh += `</tbody></table>`;
+});
+document.getElementById("matrix").innerHTML = mh;
+
+// filter
+function setFilter(focusOnly){
+  document.getElementById("bAll").classList.toggle("on",!focusOnly);
+  document.getElementById("bFocus").classList.toggle("on",focusOnly);
+  document.querySelectorAll("#matrix tbody tr").forEach(tr=>{
+    tr.style.display = (!focusOnly || tr.dataset.focus==="1") ? "" : "none";
+  });
+  document.querySelectorAll("#matrix table.mtab").forEach(tb=>{
+    const any=[...tb.querySelectorAll("tbody tr")].some(tr=>tr.style.display!=="none");
+    tb.style.display=any?"":"none"; tb.previousElementSibling.style.display=any?"":"none";
+  });
+}
+document.getElementById("bAll").onclick=()=>setFilter(false);
+document.getElementById("bFocus").onclick=()=>setFilter(true);
+
+document.getElementById("foot").innerHTML =
+  `reconintel benchmark · best-in-class computed live from ${M.corpusCount} in-force treaty records `
+  + `(two ways: across the whole book, and within ${esc(M.lob||"the same LOB")} only — ${M.lobPeers} peers) · lens: Cover Re as reinsurer. `
+  + `Click any "This treaty" cell to compare verbatim wording against both best-in-class exemplars.`;
+console.log("RECONINTEL_RENDER_OK focus="+focusKeys.length);
+</script>
+</body>
+</html>

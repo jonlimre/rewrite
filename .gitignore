@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# regulr runtime artifacts (produced by the engine, never committed)
+pricing_inputs.xlsx
+pricing_analysis.xlsx
+pricing_report.pdf
+.regulr_spec.json
+
+# reconintel generated benchmark outputs
+**/_benchmarks/
+**/_incoming/
+**/examples/sample_benchmark.html
