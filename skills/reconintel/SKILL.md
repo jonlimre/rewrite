@@ -104,4 +104,4 @@ python "${CLAUDE_PLUGIN_ROOT}/skills/reconintel/build/build_benchmark.py" \
   extraction guide, the main `report_template.html`, and `_Comparison Report/build/build.py`. If a key
   is added to the project, add it in all places.
 - This skill never edits existing records or the main deliverables; it only writes under
-  `data/_incoming/` and `data/_benchmarks/` unless the user
+  `data/_incoming/` and `data/_benchmarks/` unless the user asks to merge.

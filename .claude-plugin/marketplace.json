@@ -7,7 +7,7 @@
     {
       "name": "rewrite",
       "source": "./",
-      "description": "Reinsurance underwriting toolkit — regulr (ground-up loss ratio pricing from a submission) + reconintel (clause-by-clause treaty benchmarking vs an in-force portfolio)."
+      "description": "Reinsurance underwriting toolkit — regulr (ground-up loss ratio pricing from a submission) + reconintel (clause-by-clause treaty benchmarking vs an in-force portfolio) + replace (committee authorization-approval package: email-safe HTML request + authorization-terms PDF)."
     }
   ]
 }

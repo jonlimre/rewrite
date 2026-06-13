@@ -1,0 +1,78 @@
+{
+  "meta": {
+    "reference": "Re2026-0142",
+    "prepared_by": "J. Underwriter",
+    "date": "June 13, 2026"
+  },
+  "narrative": {
+    "recommendation": "We recommend authorizing a 25% quota share of Meridian Specialty's habitational property program, subject to the proposed terms below. Pricing supports a sub-65% expected loss ratio with strong collateral protection.",
+    "business_summary": "Meridian Specialty Insurance writes admitted habitational (apartment and condo) property across the U.S. Sun Belt through a single appointed MGA. The program is in its fourth year, with $84.2M of subject premium and a stable, granular book of mid-sized risks.",
+    "risk_profile_notes": "Exposure is concentrated in the Sun Belt with meaningful named-storm and hail exposure, partially offset by the granular, primary-layer nature of the book.",
+    "strengths": [
+      "Four-year track record with a 58% average gross loss ratio.",
+      "Granular book: average TIV per risk of $6.4M, no single risk above $25M.",
+      "Disciplined MGA underwriting with binding authority caps and quarterly audits."
+    ],
+    "weaknesses": [
+      {"point": "32% Florida concentration creates named-storm aggregation risk.", "mitigant": "Aggregate CAT cap of $40M and 100% reinstatement; modeled 1-in-250 net of cap is within appetite."},
+      {"point": "Reliance on a single MGA for production and underwriting.", "mitigant": "Binding authority is capped per risk, audited quarterly, and the treaty includes a special termination right on MGA change of control."}
+    ],
+    "noteworthy": [
+      "Cedent has agreed to a 90/10 trust/operating remittance split.",
+      "Loss-sensitive features (sliding scale + profit commission) align interests."
+    ],
+    "other_metrics": [
+      {"label": "Subject premium", "value": "$84.2M"},
+      {"label": "Policy count", "value": "12,418"},
+      {"label": "Average TIV / risk", "value": "$6.4M"},
+      {"label": "Largest single risk", "value": "$24.6M"},
+      {"label": "Florida share", "value": "32%"},
+      {"label": "Prior-year gross LR", "value": "58%"}
+    ]
+  },
+  "charts": {
+    "geo": [
+      {"label": "Florida", "value": 32},
+      {"label": "Texas", "value": 24},
+      {"label": "Georgia", "value": 14},
+      {"label": "Arizona", "value": 11},
+      {"label": "Nevada", "value": 9},
+      {"label": "Other", "value": 10}
+    ],
+    "class": [
+      {"label": "Garden apartments", "value": 46},
+      {"label": "Mid-rise condo", "value": 31},
+      {"label": "High-rise condo", "value": 14},
+      {"label": "Mixed-use", "value": 9}
+    ],
+    "limits": [
+      {"label": "$0–5M", "value": 41},
+      {"label": "$5–10M", "value": 33},
+      {"label": "$10–20M", "value": 19},
+      {"label": "$20–25M", "value": 7}
+    ]
+  },
+  "terms": {
+    "cedent": "Meridian Specialty Insurance Company",
+    "mga": "Sunbelt Property Underwriters, LLC",
+    "reinsurance_broker": "Apex Re Intermediaries",
+    "term": {"basis": "RAD", "effective": "2026-07-01", "expiry": "2027-06-30"},
+    "subject_business": "Admitted habitational property (apartments and condominiums), U.S. Sun Belt",
+    "subject_premium": "$84,200,000 estimated subject premium",
+    "share": "25% quota share",
+    "premium_caps": "Subject premium capped at 110% of estimate ($92.6M)",
+    "ceding_commission": "30% provisional",
+    "sliding_scale": [
+      {"loss_ratio": "= 70% LR", "commission": "27% (minimum)"},
+      {"loss_ratio": "60% LR", "commission": "30% (provisional)"},
+      {"loss_ratio": "= 50% LR", "commission": "33% (maximum)"}
+    ],
+    "loss_corridor": "Cedent retains 100% of losses between 72.5% and 80% LR",
+    "profit_commission": "20% after a 7.5% reinsurer margin",
+    "aggregate_cat_cap": "$40,000,000 aggregate, with one reinstatement at 100%",
+    "eco_xpl_cap": "ECO/XPL covered, capped at $5,000,000 in the aggregate",
+    "aggregate_loss_ratio_cap": "300% aggregate loss-ratio cap on ceded losses",
+    "reporting_requirements": "Monthly premium and loss bordereaux within 30 days of month-end; quarterly loss runs and a quarterly large-loss listing (>$1M)",
+    "authorization_expiration": "auto"
+  }
+}
