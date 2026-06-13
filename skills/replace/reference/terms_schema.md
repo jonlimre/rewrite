@@ -27,6 +27,7 @@ fill a gap; resolve gaps with the user first (see SKILL.md step 4).
 | `date` | no | ISO date string. Default: today (build time). |
 | `intro` | no | PDF opening recommendation line. Default: a Cover Re recommendation to authorize the terms. |
 | `signatory` | no | PDF sign-off block, object `{"name","title","org"}`. Defaults: `Blanca Qin` / `Head of Underwriting` / `Cover Re SPC`. |
+| `confidentiality_footer` | no | PDF page-footer notice. Default: a generic Cover Re confidentiality line suitable for external (e.g. broker) distribution. |
 
 ## `narrative` — drafted by Claude, confirmed by the user (HTML only)
 

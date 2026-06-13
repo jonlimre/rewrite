@@ -4,7 +4,7 @@
 coverre.com scheme: near-black header band with tan (#C49A6C) accent rule and
 lowercase 'cover re' wordmark, Times serif for the 'Authorization Terms' title
 and section labels (Cormorant stand-in), light printable body with warm zebra
-rows. Terms only -- no signature blocks.
+rows. Opens with a recommendation line and closes with a sign-off block.
 """
 import datetime as _dt
 import json
@@ -100,6 +100,10 @@ def build(spec, out_path):
     sig_name = sig.get("name", "Blanca Qin")
     sig_title = sig.get("title", "Head of Underwriting")
     sig_org = sig.get("org", "Cover Re SPC")
+    footer_text = meta.get("confidentiality_footer") or (
+        "Confidential and proprietary to Cover Re. Not to be reproduced or "
+        "distributed without prior written consent."
+    )
 
     styles = getSampleStyleSheet()
     label_st = ParagraphStyle("label", parent=styles["Normal"], fontName="Helvetica-Bold",
@@ -186,9 +190,9 @@ def build(spec, out_path):
         canvas.setLineWidth(0.5)
         canvas.line(0.75 * inch, 0.7 * inch, w - 0.75 * inch, 0.7 * inch)
         canvas.setFillColor(MUTE)
+        canvas.setFont("Helvetica", 6.5)
+        canvas.drawString(0.75 * inch, 0.5 * inch, footer_text)
         canvas.setFont("Helvetica", 7)
-        canvas.drawString(0.75 * inch, 0.5 * inch,
-                          "Confidential authorization terms prepared for committee evaluation.")
         canvas.drawRightString(w - 0.75 * inch, 0.5 * inch, f"Page {doc.page}")
         canvas.restoreState()
 
