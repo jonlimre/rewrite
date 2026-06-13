@@ -37,6 +37,47 @@ SANS = "'Inter', Arial, Helvetica, sans-serif"
 SERIF = "'Cormorant Garamond', Georgia, 'Times New Roman', serif"
 WORD = "'Outfit', 'Helvetica Neue', Arial, sans-serif"
 
+# --- US tile-grid cartogram -------------------------------------------------
+# (row, col) per state on an 8-row x 11-col grid, laid out ~geographically.
+GRID_ROWS = 8
+GRID_COLS = 11
+STATE_GRID = {
+    "AK": (0, 0), "ME": (0, 10),
+    "VT": (1, 9), "NH": (1, 10),
+    "WA": (2, 0), "ID": (2, 1), "MT": (2, 2), "ND": (2, 3), "MN": (2, 4),
+    "WI": (2, 5), "MI": (2, 7), "NY": (2, 8), "MA": (2, 9), "RI": (2, 10),
+    "OR": (3, 0), "NV": (3, 1), "WY": (3, 2), "SD": (3, 3), "IA": (3, 4),
+    "IL": (3, 5), "IN": (3, 6), "OH": (3, 7), "PA": (3, 8), "NJ": (3, 9), "CT": (3, 10),
+    "CA": (4, 0), "UT": (4, 1), "CO": (4, 2), "NE": (4, 3), "MO": (4, 4),
+    "KY": (4, 5), "WV": (4, 6), "VA": (4, 7), "MD": (4, 8), "DE": (4, 9),
+    "AZ": (5, 1), "NM": (5, 2), "KS": (5, 3), "AR": (5, 4), "TN": (5, 5),
+    "NC": (5, 6), "SC": (5, 7), "DC": (5, 8),
+    "OK": (6, 3), "LA": (6, 4), "MS": (6, 5), "AL": (6, 6), "GA": (6, 7),
+    "HI": (7, 0), "TX": (7, 3), "FL": (7, 8),
+}
+POS2STATE = {pos: code for code, pos in STATE_GRID.items()}
+NAME2CODE = {
+    "alabama": "AL", "alaska": "AK", "arizona": "AZ", "arkansas": "AR",
+    "california": "CA", "colorado": "CO", "connecticut": "CT", "delaware": "DE",
+    "district of columbia": "DC", "washington dc": "DC", "florida": "FL",
+    "georgia": "GA", "hawaii": "HI", "idaho": "ID", "illinois": "IL",
+    "indiana": "IN", "iowa": "IA", "kansas": "KS", "kentucky": "KY",
+    "louisiana": "LA", "maine": "ME", "maryland": "MD", "massachusetts": "MA",
+    "michigan": "MI", "minnesota": "MN", "mississippi": "MS", "missouri": "MO",
+    "montana": "MT", "nebraska": "NE", "nevada": "NV", "new hampshire": "NH",
+    "new jersey": "NJ", "new mexico": "NM", "new york": "NY",
+    "north carolina": "NC", "north dakota": "ND", "ohio": "OH", "oklahoma": "OK",
+    "oregon": "OR", "pennsylvania": "PA", "rhode island": "RI",
+    "south carolina": "SC", "south dakota": "SD", "tennessee": "TN",
+    "texas": "TX", "utah": "UT", "vermont": "VT", "virginia": "VA",
+    "washington": "WA", "west virginia": "WV", "wisconsin": "WI", "wyoming": "WY",
+}
+MAP_RAMP = ["#F2E2CC", "#E6C99E", "#D6AC72", "#C08C4B", "#9A6A2E"]  # light -> dark tan
+MAP_NODATA = "#EDEBE5"      # state present but no premium
+MAP_TEXT_DARK = "#2A2520"
+MAP_TEXT_LIGHT = "#FFFFFF"
+MAP_TEXT_NODATA = "#AAA499"
+
 
 def esc(v):
     return html.escape("" if v is None else str(v))
@@ -93,6 +134,75 @@ def bar_chart(series):
         return ""
     vmax = max(float(r["value"]) for r in rows) or 1.0
     return "".join(_bar_row(r.get("label", ""), float(r["value"]), vmax) for r in rows)
+
+
+def _state_code(s):
+    s = str(s or "").strip()
+    if len(s) == 2 and s.upper() in STATE_GRID:
+        return s.upper()
+    return NAME2CODE.get(s.lower())
+
+
+def geo_map_block(title, series):
+    """US tile-grid cartogram: one shaded table cell per state, colored by
+    premium intensity. Pure HTML table + bgcolor, so it renders in Outlook."""
+    data = {}
+    items = series.items() if isinstance(series, dict) else [
+        (r.get("state", r.get("label")), r.get("value")) for r in (series or [])
+    ]
+    for k, v in items:
+        if v is None:
+            continue
+        code = _state_code(k)
+        if code:
+            data[code] = float(v)
+    if not data:
+        return ""
+    vmax = max(data.values()) or 1.0
+    cell = "width=\"38\" height=\"30\""
+    grid_rows = ""
+    for r in range(GRID_ROWS):
+        cells = ""
+        for c in range(GRID_COLS):
+            code = POS2STATE.get((r, c))
+            if not code:
+                cells += f'<td {cell} style="font-size:1px;line-height:1px;">&nbsp;</td>'
+                continue
+            if code in data:
+                b = max(0, min(4, int(data[code] / vmax * 4.999)))
+                bg = MAP_RAMP[b]
+                tc = MAP_TEXT_DARK if b <= 2 else MAP_TEXT_LIGHT
+            else:
+                bg, tc = MAP_NODATA, MAP_TEXT_NODATA
+            cells += (
+                f'<td {cell} align="center" valign="middle" bgcolor="{bg}" '
+                f'style="background-color:{bg};font-family:{SANS};font-size:10px;'
+                f'font-weight:bold;color:{tc};">{code}</td>'
+            )
+        grid_rows += f"<tr>{cells}</tr>"
+    grid = (
+        f'<table role="presentation" cellpadding="0" cellspacing="3" '
+        f'style="border-collapse:separate;">{grid_rows}</table>'
+    )
+    sw = "".join(
+        f'<td width="22" height="10" bgcolor="{col}" style="background-color:{col};'
+        f'font-size:1px;line-height:1px;">&nbsp;</td>'
+        for col in MAP_RAMP
+    )
+    legend = (
+        f'<table role="presentation" cellpadding="0" cellspacing="2"><tr>'
+        f'<td style="font-family:{SANS};font-size:10px;color:{MUTE};padding-right:7px;">Lower</td>'
+        f'{sw}'
+        f'<td style="font-family:{SANS};font-size:10px;color:{MUTE};padding-left:7px;">'
+        f'Higher premium share</td></tr></table>'
+    )
+    return (
+        f'<tr><td style="padding:16px 32px 4px 32px;">'
+        f'<div style="font-family:{SANS};font-size:11px;font-weight:bold;color:{MUTE};'
+        f'text-transform:uppercase;letter-spacing:.09em;padding-bottom:9px;">{esc(title)}</div>'
+        f'{grid}<div style="height:9px;line-height:9px;font-size:1px;">&nbsp;</div>{legend}'
+        f'</td></tr>'
+    )
 
 
 def section_heading(num, text):
@@ -228,6 +338,7 @@ def terms_rows(terms):
         add("Term", f"{basis_label(term.get('basis'))}{dates}")
     add("Subject business", t.get("subject_business"))
     add("Subject premium", t.get("subject_premium"))
+    add("Excess allowance", t.get("excess_allowance"))
     add("Share", t.get("share"))
     add("Premium caps", t.get("premium_caps"))
     add("Ceding commission", t.get("ceding_commission"))
@@ -242,6 +353,14 @@ def terms_rows(terms):
     add("Aggregate CAT cap", t.get("aggregate_cat_cap"))
     add("ECO / XPL cap", t.get("eco_xpl_cap"))
     add("Aggregate loss-ratio cap", t.get("aggregate_loss_ratio_cap"))
+    # Exclusions -- always includes Cannabis Operations
+    _excl = t.get("exclusions")
+    if isinstance(_excl, str):
+        _excl = [_excl] if _excl.strip() else []
+    _excl = [str(e).strip() for e in (_excl or []) if str(e).strip()]
+    if not any("cannabis" in e.lower() for e in _excl):
+        _excl.append("Cannabis Operations")
+    out.append(("Exclusions", "; ".join(_excl)))
     add("Reporting requirements", t.get("reporting_requirements"))
     add("Collateral factors", t.get("collateral_factors")
         or "110% of unpaid loss + 100% of unearned ceded premium net of receivables")
@@ -346,6 +465,7 @@ def build(spec):
             rows.append(para(nar["risk_profile_notes"]))
         rows.append(kpi_tiles(nar.get("other_metrics")))
         rows.append(chart_block("Geographic mix", charts.get("geo")))
+        rows.append(geo_map_block("Geographic premium intensity", charts.get("geo_map")))
         rows.append(chart_block("Class / line-of-business mix", charts.get("class")))
         rows.append(chart_block("Limit / attachment bands", charts.get("limits")))
 

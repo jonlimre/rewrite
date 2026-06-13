@@ -132,6 +132,7 @@ def build(spec, out_path):
     structure = g(("Term", term_value(terms.get("term"))),
                   ("Subject Business", terms.get("subject_business")),
                   ("Subject Premium", terms.get("subject_premium")),
+                  ("Excess Allowance", terms.get("excess_allowance")),
                   ("Share", terms.get("share")), ("Premium Caps", terms.get("premium_caps")))
     if structure:
         sections.append(("Structure & Term", structure))
@@ -146,6 +147,17 @@ def build(spec, out_path):
              ("Aggregate Loss-Ratio Cap", terms.get("aggregate_loss_ratio_cap")))
     if caps:
         sections.append(("Caps & Limits", caps))
+    # Exclusions section -- always includes Cannabis Operations
+    excl = terms.get("exclusions")
+    if isinstance(excl, str):
+        excl = [excl] if excl.strip() else []
+    excl = [str(e).strip() for e in (excl or []) if str(e).strip()]
+    if not any("cannabis" in e.lower() for e in excl):
+        excl.append("Cannabis Operations")
+    excl_value = "<br/>".join(
+        "&bull; " + e.replace("&", "&amp;").replace("<", "&lt;") for e in excl
+    )
+    sections.append(("Exclusions", [("Excluded business", excl_value)]))
     collat = g(("Collateral Factors", terms.get("collateral_factors")
                 or "110% of unpaid loss + 100% of unearned ceded premium net of receivables"),
                ("Remittance", terms.get("remittance")

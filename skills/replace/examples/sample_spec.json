@@ -50,6 +50,18 @@
       {"label": "$5–10M", "value": 33},
       {"label": "$10–20M", "value": 19},
       {"label": "$20–25M", "value": 7}
+    ],
+    "geo_map": [
+      {"state": "FL", "value": 32},
+      {"state": "TX", "value": 24},
+      {"state": "GA", "value": 14},
+      {"state": "AZ", "value": 11},
+      {"state": "NV", "value": 9},
+      {"state": "NC", "value": 6},
+      {"state": "SC", "value": 5},
+      {"state": "TN", "value": 4},
+      {"state": "AL", "value": 3},
+      {"state": "LA", "value": 3}
     ]
   },
   "terms": {
@@ -59,6 +71,7 @@
     "term": {"basis": "RAD", "effective": "2026-07-01", "expiry": "2027-06-30"},
     "subject_business": "Admitted habitational property (apartments and condominiums), U.S. Sun Belt",
     "subject_premium": "$84,200,000 estimated subject premium",
+    "excess_allowance": "5% on premium ceded above the 110% cap",
     "share": "25% quota share",
     "premium_caps": "Subject premium capped at 110% of estimate ($92.6M)",
     "ceding_commission": "30% provisional",
@@ -73,6 +86,7 @@
     "eco_xpl_cap": "ECO/XPL covered, capped at $5,000,000 in the aggregate",
     "aggregate_loss_ratio_cap": "300% aggregate loss-ratio cap on ceded losses",
     "reporting_requirements": "Monthly premium and loss bordereaux within 30 days of month-end; quarterly loss runs and a quarterly large-loss listing (>$1M)",
+    "exclusions": ["War and terrorism", "Cyber as a peril", "Communicable disease"],
     "authorization_expiration": "auto"
   }
 }

@@ -1,6 +1,6 @@
 ---
 name: replace
-description: Produce a reinsurance authorization-approval package for committee evaluation. Takes a reinsurance submission plus a stated source for the authorization terms and emits (1) an email-safe HTML approval request (business summary, risk profile with inline-SVG charts, strengths, weaknesses + mitigants, proposed terms) and (2) a branded reportlab authorization-terms PDF. Use when the user asks to "run replace", "draft an authorization request", "prepare the committee approval", "write the LOA", or "put together the approval email + terms sheet" for a submission. Produces approval_request.html + authorization_terms.pdf.
+description: Produce a reinsurance authorization-approval package for committee evaluation. Takes a reinsurance submission plus a stated source for the authorization terms and emits (1) an email-safe HTML approval request (business summary, risk profile with charts, strengths, weaknesses + mitigants, proposed terms) and (2) a branded reportlab authorization-terms PDF. Use when the user asks to "run replace", "draft an authorization request", "prepare the committee approval", "write the LOA", or "put together the approval email + terms sheet" for a submission. Produces approval_request.html + authorization_terms.pdf.
 argument-hint: "[path-to-submission-folder]"
 allowed-tools: Read Glob Grep Bash Skill AskUserQuestion Write
 ---
@@ -12,7 +12,7 @@ The name expands to **RE**insurance **P**roposed **L**etter of **A**uthorization
 committee-ready approval package:
 
 1. `approval_request.html` — a **standalone, email-safe** approval request the user can
-   paste straight into Outlook/Gmail. Inline CSS, inline-SVG charts, HTML tables. **No
+   paste straight into Outlook/Gmail. Inline CSS, table-based bar charts, HTML tables. **No
    JavaScript, no external assets, no web fonts** (email clients strip all three).
 2. `authorization_terms.pdf` — a branded, auto-populated **authorization terms sheet**
    built with `reportlab`. Opens with a one-line recommendation, lists the grouped
@@ -31,7 +31,7 @@ Bundled assets live under `${CLAUDE_PLUGIN_ROOT}/skills/replace/`:
 - `reference/terms_schema.md` — the **field dictionary** for the spec JSON (narrative +
   authorization terms). Read this before populating anything.
 - `reference/approval_html_guide.md` — the section structure of the HTML approval request
-  and the email-safe inline-SVG chart recipes. Read this before drafting the narrative.
+  and the email-safe table-based chart recipes. Read this before drafting the narrative.
 - `scripts/build_approval_html.py` — writes `approval_request.html` from a spec JSON.
 - `scripts/build_authorization_pdf.py` — writes `authorization_terms.pdf` from the same
   spec JSON.
@@ -160,7 +160,7 @@ Reply with:
 
 - **Never invent authorization terms.** If the named source can't supply a required term,
   ask. PREFILLED house defaults are the only values you may supply unasked.
-- The HTML must stay **email-safe**: inline CSS only, charts as inline SVG, no `<script>`,
+- The HTML must stay **email-safe**: inline CSS only, charts as nested-table bars, no `<script>`,
   no external images, no web fonts. The builder enforces this — don't bolt JS charts on.
 - There is **no authorization-expiration callout in the HTML**; the expiration lives in the
   PDF terms sheet only.

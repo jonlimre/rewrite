@@ -6,7 +6,7 @@ A Claude plugin bundling three reinsurance skills:
 |---|---|
 | [`regulr`](skills/regulr/SKILL.md) | **RE**insurance **G**round **U**p **L**oss **R**atio — ingests a reinsurance submission (PDFs, Word, Excel, PowerPoint, images) and produces the cedent's ground-up loss ratio analysis: `pricing_inputs.xlsx`, a formula-driven `pricing_analysis.xlsx`, and a one-page `pricing_report.pdf`. |
 | [`reconintel`](skills/reconintel/SKILL.md) | **RE**insurance **CON**tracts **INTEL**ligence — benchmarks a new reinsurance treaty against an in-force portfolio across 35 functional clauses, computing best-in-class wording live from your corpus, and emits a focused gap report (HTML + markdown). |
-| [`replace`](skills/replace/SKILL.md) | **RE**insurance **P**roposed **L**etter of **A**uthorization for **C**ommittee **E**valuation — turns a submission plus a stated terms source into a committee-ready package: an email-safe `approval_request.html` (business summary, risk profile with inline-SVG charts, strengths, weaknesses + mitigants, proposed terms) and a branded `authorization_terms.pdf`. |
+| [`replace`](skills/replace/SKILL.md) | **RE**insurance **P**roposed **L**etter of **A**uthorization for **C**ommittee **E**valuation — turns a submission plus a stated terms source into a committee-ready package: an email-safe `approval_request.html` (business summary, risk profile with charts, strengths, weaknesses + mitigants, proposed terms) and a branded `authorization_terms.pdf`. |
 
 ## Install
 

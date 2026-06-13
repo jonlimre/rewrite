@@ -7,7 +7,8 @@ authorization. It must survive **pasting into an email body**, so the builder en
   (Gmail keeps it, Outlook desktop strips it), no class-based theming.
 - **Layout via tables**, not flexbox/grid — Outlook's Word rendering engine ignores modern
   CSS layout.
-- **Charts as inline `<svg>`** — no `<canvas>`, no Chart.js, no external image URLs.
+- **Charts as nested HTML tables with `bgcolor` fills** — no inline `<svg>`, `<canvas>`,
+  Chart.js, or external images (Outlook's Word engine renders none of those reliably).
 - **Web-safe fonts with brand-first fallback** — the builder names the Cover Re brand
   fonts first then a web-safe fallback the client actually renders: body
   `'Inter', Arial, Helvetica, sans-serif`; serif headings
@@ -29,15 +30,16 @@ complete and useful.
 
 ## Section order (top to bottom)
 
-1. **Header band** — reinsurer branding line, document title, reference, date, prepared-by.
+1. **Header band** — `cover re` wordmark, document title, reinsurer line, date, prepared-by.
 2. **Recommendation callout** — `narrative.recommendation`. The single most important
    line: what you're asking the committee to approve and your recommendation.
 3. **Subject business summary** — `narrative.business_summary`. What the cedent does, the
    program, the structure in plain terms.
 4. **Risk profile** — `narrative.risk_profile_notes` (optional intro) + the charts
-   (`charts.geo`, `charts.class`, `charts.limits`) + `narrative.other_metrics` as KPI
-   tiles. This is where geography, class mix, limits/attachment, policy count, average
-   limit, top exposures go.
+   (`charts.geo`, `charts.class`, `charts.limits`) + the optional `charts.geo_map`
+   tile-grid cartogram (US state grid shaded by premium intensity, shown under the geo
+   bar) + `narrative.other_metrics` as KPI tiles. This is where geography, class mix,
+   limits/attachment, policy count, average limit, top exposures go.
 5. **Strengths** — `narrative.strengths`.
 6. **Weaknesses & mitigants** — `narrative.weaknesses`, each rendered as the concern paired
    with the "why we're okay with it" mitigant. Two columns.

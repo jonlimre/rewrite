@@ -41,7 +41,7 @@ fill a gap; resolve gaps with the user first (see SKILL.md step 4).
 | `noteworthy` | array of strings | Optional. Other items the committee should see. |
 | `other_metrics` | array of objects | Optional. Each `{"label": "...", "value": "..."}` — rendered as KPI tiles (e.g. policy count, average limit, top state share). |
 
-## `charts` — numeric data for inline-SVG charts (HTML only)
+## `charts` — numeric data for the bar charts (HTML only)
 
 Each chart is an array of `{"label": "...", "value": <number>}`. Values may be percentages
 (0–100) or absolute amounts; the builder normalizes bar widths to the max in the series.
@@ -52,6 +52,7 @@ Omit a chart entirely (omit the key) if you have no data — never fabricate a d
 | `geo` | horizontal bar | Geographic mix (state/region/country). |
 | `class` | horizontal bar | Class / line-of-business mix. |
 | `limits` | horizontal bar | Limit or attachment bands. |
+| `geo_map` | tile-grid cartogram | Optional. State-level premium intensity rendered as a US tile grid (each state a shaded square colored by value). Provide a list of `{"state": "FL", "value": <n>}` (state name or 2-letter code) or a dict `{"FL": <n>}`. States with data are shaded on a tan ramp; other states show faint; built as an HTML table so it renders in Outlook. Appears under the geo bar chart. |
 
 Recommended: keep each series to ≤ 8 rows; group the long tail into "Other".
 
@@ -74,6 +75,8 @@ auto-supplied. Every other value must come from the user's named terms source.
 | `sliding_scale` | cond | Either a string, or an array of `{"loss_ratio": "...", "commission": "..."}` rows (rendered as a sub-table). Include `provisional`, `min`, `max` context in the string/rows. |
 | `loss_corridor` | cond | e.g. `Cedent retains 100% of losses between 75%–85% LR`. |
 | `profit_commission` | cond | e.g. `20% after 15% margin`. |
+| `excess_allowance` | cond | Reinsurer's excess allowance, e.g. `5% on premium ceded above the cap`. Shown in Structure & Term, directly under Subject Premium. |
+| `exclusions` | no | Array of excluded classes/operations (or a single string). **`Cannabis Operations` is always included**, appended automatically if not already present. Always rendered as its own Exclusions section. |
 | `aggregate_cat_cap` | cond | Aggregate catastrophe cap. |
 | `eco_xpl_cap` | cond | ECO / XPL (Extra-Contractual Obligations / Excess of Policy Limits) cap. |
 | `aggregate_loss_ratio_cap` | cond | Aggregate loss-ratio cap. |
@@ -87,9 +90,13 @@ auto-supplied. Every other value must come from the user's named terms source.
 The PDF builder groups `terms` into these sections (a field is shown only if present):
 
 1. **Parties** — cedent, mga, reinsurance_broker
-2. **Structure & Term** — term (basis + dates), subject_business, subject_premium, share, premium_caps
+2. **Structure & Term** — term (basis + dates), subject_business, subject_premium, excess_allowance, share, premium_caps
 3. **Economics** — ceding_commission, sliding_scale, loss_corridor, profit_commission
 4. **Caps & Limits** — aggregate_cat_cap, eco_xpl_cap, aggregate_loss_ratio_cap
-5. **Collateral & Remittance** — collateral_factors, remittance
-6. **Reporting** — reporting_requirements
-7. **Authorization** — authorization_expiration
+5. **Exclusions** — excluded business (always includes Cannabis Operations)
+6. **Collateral & Remittance** — collateral_factors, remittance
+7. **Reporting** — reporting_requirements
+8. **Authorization** — authorization_expiration
+
+The PDF opens with a recommendation line (`meta.intro`) and closes with a sign-off
+block (`meta.signatory`); the page footer carries `meta.confidentiality_footer`.
