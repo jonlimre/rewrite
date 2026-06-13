@@ -15,7 +15,8 @@ committee-ready approval package:
    paste straight into Outlook/Gmail. Inline CSS, inline-SVG charts, HTML tables. **No
    JavaScript, no external assets, no web fonts** (email clients strip all three).
 2. `authorization_terms.pdf` — a branded, auto-populated **authorization terms sheet**
-   built with `reportlab`. Terms only — no signature/sign-off blocks.
+   built with `reportlab`. Opens with a one-line recommendation, lists the grouped
+   authorization terms, and closes with a sign-off block (signatory name, title, org).
 
 Both documents are branded for **COVER REINSURANCE SPC, LTD. acting on behalf of and for
 COVER REINSURANCE SEGREGATED PORTFOLIO #1** (overridable via the spec) and styled to match

@@ -15,7 +15,14 @@ from reportlab.lib.enums import TA_LEFT
 from reportlab.lib.pagesizes import LETTER
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import inch
-from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
+from reportlab.platypus import (
+    KeepTogether,
+    Paragraph,
+    SimpleDocTemplate,
+    Spacer,
+    Table,
+    TableStyle,
+)
 
 BLACK = colors.HexColor("#000000")
 NEARBLACK = colors.HexColor("#0E0E0F")
@@ -83,6 +90,17 @@ def build(spec, out_path):
     reinsurer = meta.get("reinsurer", DEFAULT_REINSURER)
     date_str = meta.get("date") or pretty_date(_dt.date.today())
 
+    # Opening recommendation line and sign-off (overridable via meta).
+    intro_text = meta.get("intro") or (
+        "Cover Re recommends that Cover Reinsurance SPC, Ltd., acting on behalf of "
+        "and for Cover Reinsurance Segregated Portfolio #1, authorize the terms set "
+        "out in this document."
+    )
+    sig = meta.get("signatory") or {}
+    sig_name = sig.get("name", "Blanca Qin")
+    sig_title = sig.get("title", "Head of Underwriting")
+    sig_org = sig.get("org", "Cover Re SPC")
+
     styles = getSampleStyleSheet()
     label_st = ParagraphStyle("label", parent=styles["Normal"], fontName="Helvetica-Bold",
                               fontSize=9, textColor=LABEL_INK, leading=12, alignment=TA_LEFT)
@@ -90,6 +108,14 @@ def build(spec, out_path):
                               fontSize=9.5, textColor=INK, leading=13, alignment=TA_LEFT)
     sect_st = ParagraphStyle("sect", parent=styles["Normal"], fontName="Times-Roman",
                              fontSize=13, textColor=ACCENT, leading=16, alignment=TA_LEFT)
+    intro_st = ParagraphStyle("intro", parent=styles["Normal"], fontName="Helvetica",
+                              fontSize=10.5, textColor=INK, leading=15, alignment=TA_LEFT)
+    signed_st = ParagraphStyle("signed", parent=styles["Normal"], fontName="Helvetica",
+                               fontSize=10, textColor=INK, leading=14, alignment=TA_LEFT)
+    signame_st = ParagraphStyle("signame", parent=styles["Normal"], fontName="Helvetica",
+                                fontSize=10.5, textColor=INK, leading=14, alignment=TA_LEFT)
+    sigorg_st = ParagraphStyle("sigorg", parent=styles["Normal"], fontName="Helvetica",
+                               fontSize=9.5, textColor=MUTE, leading=13, alignment=TA_LEFT)
 
     def g(*pairs):
         return [(lbl, val) for (lbl, val) in pairs if val]
@@ -169,7 +195,7 @@ def build(spec, out_path):
     doc = SimpleDocTemplate(out_path, pagesize=LETTER, leftMargin=0.75 * inch,
                             rightMargin=0.75 * inch, topMargin=1.45 * inch,
                             bottomMargin=0.9 * inch, title="Authorization Terms", author=reinsurer)
-    flow = [Spacer(1, 4)]
+    flow = [Spacer(1, 4), Paragraph(intro_text, intro_st), Spacer(1, 16)]
     avail_w = LETTER[0] - 1.5 * inch
     lab_w = 2.1 * inch
     val_w = avail_w - lab_w
@@ -193,6 +219,14 @@ def build(spec, out_path):
         tbl.setStyle(TableStyle(st))
         flow.append(tbl)
         flow.append(Spacer(1, 13))
+    # Sign-off block (kept together so it never splits across a page break)
+    flow.append(Spacer(1, 20))
+    flow.append(KeepTogether([
+        Paragraph("Signed,", signed_st),
+        Spacer(1, 28),
+        Paragraph(f"<b>{sig_name}</b>, {sig_title}", signame_st),
+        Paragraph(sig_org, sigorg_st),
+    ]))
     doc.build(flow, onFirstPage=header_footer, onLaterPages=header_footer)
     return out_path
 

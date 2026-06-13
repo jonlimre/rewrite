@@ -25,6 +25,8 @@ fill a gap; resolve gaps with the user first (see SKILL.md step 4).
 | `title` | no | Override the HTML title. Default `Reinsurance Authorization Request`. |
 | `prepared_by` | no | Underwriter / preparer name. |
 | `date` | no | ISO date string. Default: today (build time). |
+| `intro` | no | PDF opening recommendation line. Default: a Cover Re recommendation to authorize the terms. |
+| `signatory` | no | PDF sign-off block, object `{"name","title","org"}`. Defaults: `Blanca Qin` / `Head of Underwriting` / `Cover Re SPC`. |
 
 ## `narrative` — drafted by Claude, confirmed by the user (HTML only)
 
