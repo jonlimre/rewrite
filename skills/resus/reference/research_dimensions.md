@@ -98,7 +98,7 @@ category lands where. Every S&P category is captured or carries a logged reason 
 - Counterparty complaints about claims handling, reporting, or remittance (relevant to the
   cedent↔MGA↔TPA chain in this very submission).
 - Collateral / trust / commutation disputes.
-- **S&P feed:** **Reinsurance recoverables / U.S. Reinsurance Relationships** — ceded premium,
+- **S&P feed:** **Reinsurance recoverables & relationships** — ceded premium,
   unauthorized (non-US) cession share, recoverables ÷ C&S, and any overdue recoverables. For a
   fronting carrier this is the collateral-adequacy lens (the Vesttoo exposure category); surface
   it as a finding here, not only as a table.

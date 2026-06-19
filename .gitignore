@@ -14,6 +14,9 @@ Thumbs.db
 .idea/
 *.swp
 
+# Claude Code local settings (personal, not shared)
+.claude/settings.local.json
+
 # regulr runtime artifacts (produced by the engine, never committed)
 pricing_inputs.xlsx
 pricing_analysis.xlsx
