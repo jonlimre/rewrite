@@ -1,6 +1,8 @@
 ---
 name: reconintel
 description: Benchmark a NEW reinsurance treaty against Cover Re's in-force portfolio, clause by clause. Extracts the new Contract + I&L into the project's standard 35-clause schema, computes best-in-class wording live from the existing treaties, and produces a focused gap report (HTML + markdown) showing where the new treaty's language falls short of best-in-class so a contracts reviewer knows exactly where to focus. Use when a new treaty PDF arrives and someone asks to benchmark / compare / "recon" it against our book.
+argument-hint: "[path-to-treaty-folder-or-PDF] [--corpus path-to-portfolio.json]"
+allowed-tools: Read Glob Grep Bash Skill Task Write
 ---
 
 # reconintel — new-treaty benchmark

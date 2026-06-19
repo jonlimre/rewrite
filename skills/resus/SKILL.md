@@ -2,7 +2,7 @@
 name: resus
 description: Run sourced counterparty due diligence on a reinsurance submission's cedent, MGA, and TPA. Resolves each entity (with a confirmation gate), runs cited + adversarially-verified open-web research (financial distress, controversial leadership, partner-relationship problems, ongoing/settled litigation, customer reviews, other relevant intel), and pulls S&P Capital IQ financials (P&C statutory financial highlights and Schedule P loss-ratio reserves) via an interactive browser session. Produces a standalone, fully-cited PDF diligence report. Use when the user asks to "run resus", "vet the cedent/MGA/TPA", "do due diligence on this submission", "background-check the counterparties", "research this cedent", or "are these counterparties safe to write". Produces diligence_report.pdf.
 argument-hint: "[path-to-submission-folder | Reference code | entity names]"
-allowed-tools: Read Glob Grep Bash Skill AskUserQuestion Write WebSearch WebFetch mcp__Claude_in_Chrome__list_connected_browsers mcp__Claude_in_Chrome__select_browser mcp__Claude_in_Chrome__tabs_context_mcp mcp__Claude_in_Chrome__navigate mcp__Claude_in_Chrome__find mcp__Claude_in_Chrome__computer mcp__Claude_in_Chrome__javascript_tool mcp__Claude_in_Chrome__get_page_text mcp__Claude_in_Chrome__read_page mcp__Claude_in_Chrome__read_network_requests mcp__Claude_in_Chrome__resize_window
+allowed-tools: Read Glob Grep Bash Skill Workflow AskUserQuestion Write WebSearch WebFetch mcp__Claude_in_Chrome__list_connected_browsers mcp__Claude_in_Chrome__select_browser mcp__Claude_in_Chrome__tabs_context_mcp mcp__Claude_in_Chrome__navigate mcp__Claude_in_Chrome__find mcp__Claude_in_Chrome__computer mcp__Claude_in_Chrome__javascript_tool mcp__Claude_in_Chrome__get_page_text mcp__Claude_in_Chrome__read_page mcp__Claude_in_Chrome__read_network_requests mcp__Claude_in_Chrome__resize_window
 ---
 
 # resus — REinsurance reSearch Underwriting Submissions
@@ -76,10 +76,10 @@ attachments, running independent extractions in parallel:
 | Extension | How to extract |
 |---|---|
 | `.pdf` | `Skill(anthropic-skills:pdf)` |
-| `.xlsx` / `.xls` / `.csv` | `Skill(anthropic-skills:xlsx)` |
+| `.xlsx` / `.xlsm` / `.xls` / `.csv` | `Skill(anthropic-skills:xlsx)` |
 | `.docx` | `Skill(anthropic-skills:docx)` |
 | `.pptx` | `Skill(anthropic-skills:pptx)` |
-| `.png` / `.jpg` | `Read` (vision) |
+| `.png` / `.jpg` / `.jpeg` | `Read` (vision) |
 
 Determine the three counterparties:
 

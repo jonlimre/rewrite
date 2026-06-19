@@ -76,9 +76,9 @@
     "premium_caps": "Subject premium capped at 110% of estimate ($92.6M)",
     "ceding_commission": "30% provisional",
     "sliding_scale": [
-      {"loss_ratio": "= 70% LR", "commission": "27% (minimum)"},
+      {"loss_ratio": "≥ 70% LR", "commission": "27% (minimum)"},
       {"loss_ratio": "60% LR", "commission": "30% (provisional)"},
-      {"loss_ratio": "= 50% LR", "commission": "33% (maximum)"}
+      {"loss_ratio": "≤ 50% LR", "commission": "33% (maximum)"}
     ],
     "loss_corridor": "Cedent retains 100% of losses between 72.5% and 80% LR",
     "profit_commission": "20% after a 7.5% reinsurer margin",

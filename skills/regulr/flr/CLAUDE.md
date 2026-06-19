@@ -77,14 +77,3 @@ Observations propagate any workbook warnings and flag heuristic issues
 - CLI tool: `libreoffice` (or `soffice`) — only needed for the PDF leg, which
   evaluates the analysis workbook's formulas before reading values. If it's
   not on `PATH` the script prints a warning and writes only the xlsx.
-
-## Tests
-
-`tests/` exercises 10 input scenarios (no triangles, small `n`, mismatched
-counts, quarterly dev ages, reordered assumptions, etc.) and asserts
-structural invariants of the generated workbook. Run:
-
-```
-python tests/generate_scenarios.py    # one-time
-python tests/run_tests.py             # re-run any time pricing.py changes
-```

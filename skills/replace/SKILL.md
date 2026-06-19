@@ -110,8 +110,9 @@ still missing after extraction:
 
 - `mga`, `premium_caps`
 - `ceding_commission` and any `sliding_scale` (provisional, min/max, slide rates by LR)
-- `loss_corridor`, `profit_commission`
+- `loss_corridor`, `profit_commission`, `excess_allowance`
 - `aggregate_cat_cap`, `eco_xpl_cap`, `aggregate_loss_ratio_cap`
+- `exclusions` (array of excluded classes/operations) — see the cannabis note below
 - `reporting_requirements`
 
 ### 5. Present draft summary — wait for confirmation
@@ -160,6 +161,10 @@ Reply with:
 
 - **Never invent authorization terms.** If the named source can't supply a required term,
   ask. PREFILLED house defaults are the only values you may supply unasked.
+- **`Cannabis Operations` is always added to exclusions** by both builders — it is appended
+  automatically if not already present, so it appears in the terms even when you pass no
+  `exclusions` at all. This is a deliberate house rule; mention it in the draft summary so the
+  user isn't surprised by it.
 - The HTML must stay **email-safe**: inline CSS only, charts as nested-table bars, no `<script>`,
   no external images, no web fonts. The builder enforces this — don't bolt JS charts on.
 - There is **no authorization-expiration callout in the HTML**; the expiration lives in the

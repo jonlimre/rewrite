@@ -65,6 +65,8 @@ rewrite/
 
 Python 3.8+. `reconintel`'s builder and `replace`'s HTML builder are pure
 standard library; `regulr`'s engine/input builder and the PDF builders in
-`replace` / `resus` use `openpyxl`/`reportlab` (installed on demand). `resus`
-also uses web search/fetch for research and the Claude in Chrome MCP for the
-interactive S&P Capital IQ Pro pull.
+`replace` / `resus` use `openpyxl`/`reportlab` (installed on demand). `regulr`
+additionally needs `pandas` and the `libreoffice` (or `soffice`) CLI — the CLI
+is used only for the PDF leg, which evaluates the analysis workbook's formulas
+before reading values. `resus` also uses web search/fetch for research and the
+Claude in Chrome MCP for the interactive S&P Capital IQ Pro pull.
