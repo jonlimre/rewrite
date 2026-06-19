@@ -1,0 +1,193 @@
+{
+  "meta": {
+    "title": "Counterparty Due Diligence",
+    "date": "2026-06-18",
+    "prepared_by": "Cover Re Underwriting"
+  },
+  "summary": {
+    "headline": "Three counterparties vetted on a Florida coastal property quota share. The cedent (Meridian Coastal) is financially stable but recently downgraded outlook; the MGA (Harbor Point) is clean; the TPA (Sentinel Claims) carries a RED flag for a documented pattern of claims-handling complaints and one open class action. All entities are fictional — this file is a builder test fixture.",
+    "flags": [
+      {"entity": "Meridian Coastal Insurance Company", "role": "Cedent", "financial_distress": "amber", "leadership": "green", "partners": "green", "litigation": "amber", "reviews": "amber", "other": "green", "overall": "amber"},
+      {"entity": "Harbor Point Underwriters LLC", "role": "MGA", "financial_distress": "grey", "leadership": "green", "partners": "green", "litigation": "green", "reviews": "green", "other": "green", "overall": "green"},
+      {"entity": "Sentinel Claims Services Inc.", "role": "TPA", "financial_distress": "grey", "leadership": "amber", "partners": "amber", "litigation": "red", "reviews": "red", "other": "amber", "overall": "red"}
+    ]
+  },
+  "entities": [
+    {
+      "name": "Meridian Coastal Insurance Company",
+      "role": "Cedent",
+      "resolved": {
+        "legal_name": "Meridian Coastal Insurance Company",
+        "domain": "meridiancoastal.example",
+        "jurisdiction": "Florida, USA",
+        "identifiers": "NAIC #99001 (illustrative); FL OIR licensed; S&P Capital IQ ID IQ0000000",
+        "confidence": "High",
+        "confirmed": true,
+        "note": "Distinct from Meridian Coastal Insurance Agency LLC, the affiliated retail agency."
+      },
+      "dimensions": [
+        {
+          "key": "financial_distress",
+          "label": "Financial distress",
+          "flag": "amber",
+          "summary": "Adequately capitalized with a stable rating, but the rating outlook was revised to negative in early 2026 on coastal catastrophe exposure and reserve strengthening.",
+          "nothing_found": false,
+          "findings": [
+            {"claim": "Demotech affirmed the Financial Stability Rating of A (Exceptional) but revised the outlook to negative in February 2026, citing storm-season exposure.", "assessment": "verified", "sources": [
+              {"title": "Demotech rating action — Meridian Coastal", "publisher": "Demotech", "url": "https://www.demotech.example/ratings/meridian-coastal", "date": "2026-02-10"},
+              {"title": "Florida carrier outlook cut to negative", "publisher": "Insurance Insider", "url": "https://www.insuranceinsider.example/meridian-outlook", "date": "2026-02-12"}
+            ]}
+          ]
+        },
+        {"key": "leadership", "label": "Leadership & governance", "flag": "green", "nothing_found": true, "findings": []},
+        {"key": "partners", "label": "Partner relationships", "flag": "green", "nothing_found": true, "findings": []},
+        {
+          "key": "litigation", "label": "Litigation", "flag": "amber",
+          "summary": "Routine policyholder coverage disputes consistent with a Florida property book; nothing systemic identified.",
+          "nothing_found": false,
+          "findings": [
+            {"claim": "Several individual hurricane-claim coverage suits in FL state court (2023-2025); volume appears in line with peers of similar size.", "assessment": "inference", "sources": [
+              {"title": "Florida courts docket search — Meridian Coastal", "publisher": "FL Courts e-portal", "url": "https://www.flcourts.example/search?q=meridian-coastal", "date": "2026-06-17"}
+            ]}
+          ]
+        },
+        {
+          "key": "reviews", "label": "Customer reviews", "flag": "amber",
+          "summary": "Mixed policyholder sentiment with above-average claims-delay mentions during 2024 storm season; no regulator complaint spike.",
+          "nothing_found": false,
+          "findings": [
+            {"claim": "Google rating 2.9 (180 reviews); recurring theme of slow first contact after a loss.", "assessment": "single-source", "sources": [
+              {"title": "Meridian Coastal — Google reviews", "publisher": "Google", "url": "https://www.google.example/reviews/meridian-coastal", "date": "2026-06-17"}
+            ]}
+          ]
+        },
+        {"key": "other", "label": "Other relevant intel", "flag": "green", "nothing_found": true, "findings": []}
+      ],
+      "sp_financials": {
+        "available": true,
+        "source_url": "https://www.capitaliq.spglobal.example/company/meridian-coastal/financials",
+        "captured": "2026-06-18",
+        "tables": [
+          {
+            "title": "U.S. Stat — P&C Financial Highlights",
+            "columns": ["FY2024", "FY2025", "Q1 2026"],
+            "rows": [
+              {"label": "Gross written premium ($M)", "values": ["302.7", "318.4", "84.1"]},
+              {"label": "Net income ($M)", "values": ["19.4", "12.1", "3.2"]},
+              {"label": "Combined ratio %", "values": ["98.6", "101.2", "99.5"]},
+              {"label": "Policyholders' surplus ($M)", "values": ["183.6", "176.3", "178.9"]},
+              {"label": "Demotech FSR", "values": ["A", "A (neg. outlook)", "A (neg. outlook)"]}
+            ],
+            "commentary": "Combined ratio crossed 100% in FY2025 (101.2%) and surplus dipped ~4% on storm-loss reserve strengthening; Demotech outlook turned negative. Coastal-cat exposure is the watch item."
+          },
+          {
+            "title": "Schedule P — Incurred Loss Ratios (net, by accident year)",
+            "row_header": "Accident Year",
+            "columns": ["12mo", "24mo", "36mo", "% init"],
+            "rows": [
+              {"label": "2023", "values": ["62.1", "64.8", "66.0", "6.3"]},
+              {"label": "2024", "values": ["68.9", "72.4", "—", "5.1"]},
+              {"label": "2025", "values": ["71.2", "—", "—", "—"]}
+            ],
+            "commentary": "Accident-year incurred loss ratios are drifting up (62%→71% at 12mo) with modest adverse development (+5-6% of initial), consistent with the storm-driven reserve strengthening."
+          },
+          {
+            "title": "Schedule P — Paid Loss Ratios (net, payout pattern)",
+            "row_header": "Accident Year",
+            "columns": ["12mo", "24mo", "36mo", "Ult"],
+            "rows": [
+              {"label": "2022", "values": ["31.2", "48.7", "58.9", "67.0"]},
+              {"label": "2023", "values": ["30.4", "47.1", "—", "—"]},
+              {"label": "2024", "values": ["33.8", "—", "—", "—"]}
+            ],
+            "commentary": "Paid develops from ~31% at 12mo toward ~67% ultimate — a moderate property tail; the incurred-minus-paid gap is the case+IBNR reserve. Payout pace looks stable across recent years."
+          }
+        ],
+        "annual_statement": "FY2025 statutory annual statement filed 2026-03-01; surplus down 4% YoY on reserve strengthening for 2024 storm losses; reinsurance program renewed with higher retention.",
+        "notes": "Figures transcribed from Capital IQ Pro on the capture date."
+      }
+    },
+    {
+      "name": "Harbor Point Underwriters LLC",
+      "role": "MGA",
+      "resolved": {
+        "legal_name": "Harbor Point Underwriters LLC",
+        "domain": "harborpointmga.example",
+        "jurisdiction": "Georgia, USA (licensed multi-state)",
+        "identifiers": "MGA; no S&P coverage; GA DOI producer license (illustrative)",
+        "confidence": "High",
+        "confirmed": true
+      },
+      "dimensions": [
+        {"key": "financial_distress", "label": "Financial distress", "flag": "grey", "nothing_found": true, "findings": []},
+        {"key": "leadership", "label": "Leadership & governance", "flag": "green", "nothing_found": true, "findings": []},
+        {"key": "partners", "label": "Partner relationships", "flag": "green", "summary": "Long-standing carrier relationships; no public disputes located.", "nothing_found": false, "findings": [
+          {"claim": "Named program administrator for two other regional carriers since 2019; no termination or dispute reported in trade press.", "assessment": "verified", "sources": [
+            {"title": "Harbor Point program launch", "publisher": "Reinsurance News", "url": "https://www.reinsurancene.ws.example/harbor-point", "date": "2019-05-02"},
+            {"title": "Regional MGA roundup 2024", "publisher": "The Insurer", "url": "https://www.theinsurer.example/mga-roundup-2024", "date": "2024-09-15"}
+          ]}
+        ]},
+        {"key": "litigation", "label": "Litigation", "flag": "green", "nothing_found": true, "findings": []},
+        {"key": "reviews", "label": "Customer reviews", "flag": "green", "nothing_found": true, "findings": []},
+        {"key": "other", "label": "Other relevant intel", "flag": "green", "nothing_found": true, "findings": []}
+      ],
+      "sp_financials": {
+        "available": false,
+        "not_available_reason": "Private MGA; no S&P Capital IQ coverage. Financial standing not independently assessed beyond the open-web review above."
+      }
+    },
+    {
+      "name": "Sentinel Claims Services Inc.",
+      "role": "TPA",
+      "resolved": {
+        "legal_name": "Sentinel Claims Services Inc.",
+        "domain": "sentinelclaims.example",
+        "jurisdiction": "Texas, USA",
+        "identifiers": "Third-party administrator; TX TPA certificate (illustrative); no S&P coverage",
+        "confidence": "Medium",
+        "confirmed": true,
+        "note": "TPA not named in the submission email; identified from the claims-handling agreement in the slip. Confirm with the cedent."
+      },
+      "dimensions": [
+        {"key": "financial_distress", "label": "Financial distress", "flag": "grey", "nothing_found": true, "findings": []},
+        {"key": "leadership", "label": "Leadership & governance", "flag": "amber", "summary": "CEO previously led a TPA that surrendered its license in another state; not independently disqualifying but worth noting.", "nothing_found": false, "findings": [
+          {"claim": "CEO J. Doe was president of a TPA whose certificate was surrendered in 2017 following a market-conduct exam.", "assessment": "single-source", "sources": [
+            {"title": "TPA certificate surrender order (2017)", "publisher": "State DOI bulletin", "url": "https://www.statedoi.example/orders/2017-tpa-surrender", "date": "2017-08-01"}
+          ]}
+        ]},
+        {"key": "partners", "label": "Partner relationships", "flag": "amber", "summary": "One carrier publicly moved claims handling away from Sentinel in 2024.", "nothing_found": false, "findings": [
+          {"claim": "A regional carrier announced it was insourcing claims previously handled by Sentinel, citing service levels.", "assessment": "verified", "sources": [
+            {"title": "Carrier insources claims from TPA", "publisher": "Business Insurance", "url": "https://www.businessinsurance.example/sentinel-insourced", "date": "2024-03-20"},
+            {"title": "Service-level fallout for Sentinel", "publisher": "Insurance Insider", "url": "https://www.insuranceinsider.example/sentinel-fallout", "date": "2024-03-22"}
+          ]}
+        ]},
+        {"key": "litigation", "label": "Litigation", "flag": "red", "summary": "Open putative class action alleging systematic underpayment/delay of property claims; one prior matter settled.", "nothing_found": false, "findings": [
+          {"claim": "Putative class action filed 2025 in TX federal court alleging a pattern of delayed and underpaid property claims (status: pending, not adjudicated).", "assessment": "verified", "sources": [
+            {"title": "Smith v. Sentinel Claims Services — complaint", "publisher": "CourtListener", "url": "https://www.courtlistener.example/docket/sentinel-class", "date": "2025-06-10"},
+            {"title": "Class action targets Texas TPA", "publisher": "Reuters Legal", "url": "https://www.reuters.example/legal/sentinel-class", "date": "2025-06-12"}
+          ]},
+          {"claim": "A 2021 bad-faith claims-handling suit was settled on confidential terms in 2022.", "assessment": "verified", "sources": [
+            {"title": "Bad-faith suit docket (2021-2022)", "publisher": "CourtListener", "url": "https://www.courtlistener.example/docket/sentinel-badfaith", "date": "2022-11-04"},
+            {"title": "TPA settles bad-faith claim", "publisher": "Business Insurance", "url": "https://www.businessinsurance.example/sentinel-settles", "date": "2022-11-09"}
+          ]}
+        ]},
+        {"key": "reviews", "label": "Customer reviews", "flag": "red", "summary": "Strongly negative policyholder and adjuster sentiment with a consistent delay/denial theme; pattern is material for a TPA on a property book.", "nothing_found": false, "findings": [
+          {"claim": "BBB rating F with 410 complaints, ~85% claims-related; Google 1.4 (520 reviews).", "assessment": "verified", "sources": [
+            {"title": "Sentinel Claims — BBB profile", "publisher": "BBB", "url": "https://www.bbb.example/sentinel-claims", "date": "2026-06-17"},
+            {"title": "Sentinel Claims — Google reviews", "publisher": "Google", "url": "https://www.google.example/reviews/sentinel-claims", "date": "2026-06-17"}
+          ]}
+        ]},
+        {"key": "other", "label": "Other relevant intel", "flag": "amber", "summary": "Reported workforce reductions in the claims unit in 2025 may bear on capacity.", "nothing_found": false, "findings": [
+          {"claim": "Local press reported a ~15% reduction in the claims operations headcount in late 2025.", "assessment": "single-source", "sources": [
+            {"title": "Sentinel cuts claims staff", "publisher": "Local Business Journal", "url": "https://www.localbizjournal.example/sentinel-cuts", "date": "2025-11-30"}
+          ]}
+        ]}
+      ],
+      "sp_financials": {
+        "available": false,
+        "not_available_reason": "Private TPA; no S&P Capital IQ coverage."
+      }
+    }
+  ],
+  "limitations": "All entities in this file are fictional and used only to exercise the report builders. TPA identity in a real run should be confirmed with the cedent, since it is typically not captured at submission intake. Absence of a finding reflects what was searchable on the report date, not proof of absence."
+}

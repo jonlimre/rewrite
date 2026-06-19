@@ -1,8 +1,8 @@
 {
   "name": "rewrite",
   "displayName": "rewrite — Reinsurance Underwriting Toolkit",
-  "description": "Reinsurance underwriting toolkit bundling three skills: regulr (ingest a reinsurance submission and produce the cedent's ground-up loss ratio pricing analysis), reconintel (benchmark a new reinsurance treaty against an in-force portfolio, clause by clause), and replace (produce a committee authorization-approval package: an email-safe HTML approval request plus a branded authorization-terms PDF).",
-  "version": "0.2.0",
+  "description": "Reinsurance underwriting toolkit bundling four skills: regulr (ingest a reinsurance submission and produce the cedent's ground-up loss ratio pricing analysis), reconintel (benchmark a new reinsurance treaty against an in-force portfolio, clause by clause), replace (produce a committee authorization-approval package: an email-safe HTML approval request plus a branded authorization-terms PDF), and resus (run sourced counterparty due diligence on the cedent, MGA, and TPA — open-web risk research plus S&P Capital IQ statutory financials and Schedule P reserves — and produce a cited PDF report).",
+  "version": "0.3.0",
   "author": {
     "name": "Jon",
     "email": "jon@re.xyz"

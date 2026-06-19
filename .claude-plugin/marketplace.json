@@ -7,7 +7,7 @@
     {
       "name": "rewrite",
       "source": "./",
-      "description": "Reinsurance underwriting toolkit — regulr (ground-up loss ratio pricing from a submission) + reconintel (clause-by-clause treaty benchmarking vs an in-force portfolio) + replace (committee authorization-approval package: email-safe HTML request + authorization-terms PDF)."
+      "description": "Reinsurance underwriting toolkit — regulr (ground-up loss ratio pricing from a submission) + reconintel (clause-by-clause treaty benchmarking vs an in-force portfolio) + replace (committee authorization-approval package: email-safe HTML request + authorization-terms PDF) + resus (sourced counterparty due diligence on cedent/MGA/TPA: open-web risk research + S&P Capital IQ statutory financials & Schedule P reserves, cited PDF report)."
     }
   ]
 }
