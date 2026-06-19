@@ -27,7 +27,7 @@ name, treaty terms, premium, reference codes) out of `meta` and the report.
 |---|---|---|
 | `title` | no | Defaults to "Counterparty Due Diligence". Keep it counterparty-focused — no deal name. |
 | `date` | yes | Report date `YYYY-MM-DD` (the day research was run). Shown top-right of the header. |
-| `prepared_by` | no | e.g. "Cover Re Underwriting". |
+| `confidentiality_footer` | no | Optional override for the page-footer confidentiality line. A Cover Re default is used if omitted (truncated to ~160 chars). |
 | `reinsurer` | no | Defaults to the Cover Re SPC #1 line used across the toolkit. |
 
 > **Do not** include `submission` or `reference` (deal identifiers) — the report is about the
@@ -148,8 +148,8 @@ Preferred form is **`tables`** — one or more multi-period tables transcribed f
 each with its own `commentary` calling out **concerning trends/outliers**. For a carrier, the
 playbook's checklist (see `sp_capitaliq_playbook.md`) makes **five categories mandatory**: **P&C
 Financial Highlights** (three periods — latest quarter, latest year-end, prior year-end), **RBC
-& Capital Adequacy**, **Reinsurance recoverables & cession**, **Investments** (asset mix, yield,
-credit quality), and **Schedule P** — filtered to the submission's line of business and
+& Capital Adequacy**, **Reinsurance recoverables & relationships**, **Investments (P&C
+Investment Analysis)** (asset mix, yield, credit quality), and **Schedule P** — filtered to the submission's line of business and
 capturing **both Incurred and Paid loss ratios** plus reserve development. Each category is a
 table **or** carries a logged reason it was skipped (e.g. Schedule P "NM — ~100% ceded"); a
 silent omission is a defect. The figures that move a flag also belong in the relevant

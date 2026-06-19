@@ -153,7 +153,7 @@ def build(new_path, corpus_path, template_path, out_html, out_md):
     lines.append("")
     lines.append("## Focus areas (below best-in-class across the book / not addressed)")
     lines.append("")
-    lines.append(f"| Clause | New | Best (all LOBs) | Best in {lob_label} | Gap |")
+    lines.append(f"| Clause | This treaty | Best in book (all LOBs) | Best in {lob_label} | Gap (vs book) |")
     lines.append("|---|---|---|---|---|")
 
     def ex_label(best):

@@ -122,7 +122,7 @@ row exactly (screenshots are a fallback only).
 
 For a carrier (the cedent / any risk-bearing entity), the playbook's **S&P coverage checklist**
 defines five **mandatory** categories: **P&C Financial Highlights**, **RBC & Capital Adequacy**,
-**Reinsurance recoverables / Relationships**, **Investments (P&C Investment Analysis)**, and
+**Reinsurance recoverables & relationships**, **Investments (P&C Investment Analysis)**, and
 **Schedule P** (LOB-filtered). Two rules make this comprehensive rather than ad-hoc:
 
 - **No silent skip.** Each category ends as a transcribed table **or** a logged reason it was
@@ -152,7 +152,7 @@ warranted. A finding that can't clear this is removed — not published on a hun
 
 Per `report_schema.md`:
 
-1. Build the spec object (`meta` — title/date/prepared_by only, **no deal info**; `summary`
+1. Build the spec object (`meta` — title/date only, **no deal info**; `summary`
    with the risk-matrix `flags`; `entities[]`; optional `methodology`/`limitations`).
 2. `Write` it to `<OUT_DIR>/.resus_spec.json`.
 3. Build the report:

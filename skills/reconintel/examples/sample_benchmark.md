@@ -5,7 +5,7 @@ FOCUS: 6 of 35 clauses below best-in-class across the book; 6 below best-in-clas
 
 ## Focus areas (below best-in-class across the book / not addressed)
 
-| Clause | New | Best (all LOBs) | Best in General Liability | Gap |
+| Clause | This treaty | Best in book (all LOBs) | Best in General Liability | Gap (vs book) |
 |---|---|---|---|---|
 | Special Acceptances | red | green · Acme Casualty GL 2025 | green · Acme Casualty GL 2025 | below |
 | Run-off vs Cut-off | red | green · Acme Casualty GL 2025 | green · Acme Casualty GL 2025 | below |
