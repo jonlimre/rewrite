@@ -61,6 +61,14 @@ For each, run a small fan-out of targeted searches (vary the query: legal name, 
 key executives, "+ lawsuit / insolvency / rating / review"), fetch the promising hits, and
 extract findings. Run dimensions/entities in parallel where possible.
 
+**Fold the S&P pull into these dimensions.** The Capital IQ statutory data (see
+`sp_capitaliq_playbook.md`) is not a separate silo — each of its five mandatory categories
+**feeds a dimension below**, and the decision-relevant figure belongs in that dimension as a
+cited finding (`assessment: "single-source"`, S&P as the source), with the full table living in
+`sp_financials` as backup. The **"S&P feed"** line under the dimensions below says which
+category lands where. Every S&P category is captured or carries a logged reason — don't let one
+(Investment Analysis is the easy miss) drop silently.
+
 ### 1. `financial_distress` — Financial distress
 - Rating actions & outlooks: AM Best, S&P, Moody's, Fitch, KBRA, **Demotech** (common for FL
   carriers) — downgrades, "under review", withdrawals.
@@ -71,6 +79,11 @@ extract findings. Run dimensions/entities in parallel where possible.
 - Public-co signals (if listed): 8-K material events, auditor changes, covenant breaches.
 - Reinsurance-specific: trade press on the carrier's reinsurance recoverables, collateral
   disputes, fronting-program collapses.
+- **S&P feed:** the core landing spot for statutory data. **P&C Financial Highlights**
+  (profitability, ROAE/ROAA, combined ratio, net loss years), **RBC & Capital Adequacy**
+  (RBC ratio, leverage, IRIS), **Investments** (asset risk, credit quality / below-IG share,
+  yield), and the reserve-adequacy read from **Schedule P** all inform this flag. Cite the
+  moving figures here, not just in the `sp_financials` tables.
 
 ### 2. `leadership` — Leadership & governance
 - Senior leaders (CEO, CUO, CFO, founder, controlling owner) — background, prior failures,
@@ -85,6 +98,10 @@ extract findings. Run dimensions/entities in parallel where possible.
 - Counterparty complaints about claims handling, reporting, or remittance (relevant to the
   cedent↔MGA↔TPA chain in this very submission).
 - Collateral / trust / commutation disputes.
+- **S&P feed:** **Reinsurance recoverables / U.S. Reinsurance Relationships** — ceded premium,
+  unauthorized (non-US) cession share, recoverables ÷ C&S, and any overdue recoverables. For a
+  fronting carrier this is the collateral-adequacy lens (the Vesttoo exposure category); surface
+  it as a finding here, not only as a table.
 
 ### 4. `litigation` — Litigation (ongoing + settled)
 - Court dockets: **CourtListener / PACER**, state court portals. Capture caption, court, case
@@ -107,6 +124,9 @@ extract findings. Run dimensions/entities in parallel where possible.
 - Cyber incidents / data breaches, regulatory probes outside insurance.
 - Geographic/LOB concentration risk relevant to this treaty.
 - Anything materially useful to an underwriter that doesn't fit the five above.
+- **S&P feed:** premium **growth and line-of-business mix** from **P&C Financial Highlights**
+  (rapid DPW growth, a shift in mix), and any Schedule P signal that reads as a book-quality
+  trend rather than pure reserve adequacy.
 
 ## Adversarial verification pass
 
