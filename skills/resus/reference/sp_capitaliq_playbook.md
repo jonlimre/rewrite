@@ -14,6 +14,34 @@ it on the user's next interactive run (or ingest a manually-exported tearsheet �
 - Entity is **resolved and confirmed** (Gate 1 passed). You pull S&P only for confirmed
   entities, using `resolved.legal_name` + `resolved.identifiers` to land on the right company.
 
+## S&P coverage checklist — capture every category, or log why not
+
+For a carrier (the cedent / any risk-bearing entity) **all five categories below are
+mandatory.** For each one you either transcribe a table **or** record an explicit reason you
+did not — a *silent* omission is a defect, because a missing category reads as "covered and
+clean" when it was never looked at. The reason lives in `sp_financials` (a one-line note in
+`annual_statement` / `notes`, or a stub table whose `commentary` explains the N/A), exactly the
+way Schedule P is marked "NM" for a ~100%-ceding fronting carrier. Before you finish the pull,
+walk this list and confirm each row is either a table or a logged reason.
+
+Each category also **feeds a research dimension** — do not leave the figures stranded in the
+financials block. Lift the decision-relevant number into a **cited finding inside that
+dimension** (`assessment: "single-source"`, S&P as the source), so the narrative and the
+statutory table say the same thing. The `sp_financials` tables are the auditable backup; the
+dimensions are where the figure actually informs the flag.
+
+| # | S&P category (CIQ page) | Capture | Feeds dimension(s) | Skip only if… |
+|---|---|---|---|---|
+| 1 | **P&C Financial Highlights** (Financials ▸ U.S. Statutory) | C&S, surplus notes, net admitted assets, DPW/NPW, combined ratio, **ROAE / ROAA / pre-tax operating margin**, net yield, RBC, liquidity ratio; premium growth & mix | `financial_distress` (profitability, capital), `other` (growth, premium mix) | never — mandatory for any carrier |
+| 2 | **RBC & Capital Adequacy** (P&C Capital Adequacy) | RBC (TAC/ACL), leverage, liquidity, investment-risk ratios; **NAIC IRIS** if a page exists | `financial_distress` | never — if IRIS is absent at the SNL *group* level, say so rather than omitting silently |
+| 3 | **Reinsurance recoverables / U.S. Reinsurance Relationships** | ceded premium, **unauthorized (non-US) cession share**, recoverables ÷ C&S, **overdue** recoverables | `partners` (collateral / counterparty risk — the Vesttoo lens), `financial_distress` | never for a cedent / fronting carrier |
+| 4 | **Investments** (P&C Investment Analysis) | asset mix (cash/ST vs bonds), net yield, NII trend, **credit quality / below-investment-grade (NAIC 3–6) share**, duration | `financial_distress` (asset risk) | only with a logged reason (e.g. negligible invested assets) |
+| 5 | **Schedule P** (U.S. P&C Schedule P) — **LOB-filtered** | incurred + paid loss ratios, reserve development (% of initial, paid-to-ultimate) | `financial_distress` (reserve adequacy), `other` | log "NM — ~100% ceded" for a fronting carrier; lean on the industry-comparison rows instead |
+
+The step-by-step below walks these in detail. The numbering there is ordered for the browser
+workflow, not the checklist — what matters is that **every row above ends as a table or a
+reason**.
+
 ## Step-by-step (per confirmed entity)
 
 1. **Locate the connected tab.** Use the Claude in Chrome MCP (`list_connected_browsers` /
@@ -114,6 +142,13 @@ wheel), and never resize the window very tall (it can freeze the renderer).
 - **No coverage ≠ blank.** If the entity isn't in Capital IQ (common for private MGAs/TPAs),
   set `available: false` and `not_available_reason`, and rely on regulatory/statutory sources
   (state DOI financials, NAIC) noted in the open-web phase instead.
+- **No silent category skip.** Within a covered entity, every checklist category above is
+  captured as a table or carries an explicit reason it was not (Schedule P "NM — ~100% ceded"
+  is the model). Dropping a category without a logged reason — the way Investment Analysis is
+  easy to forget — is the defect this checklist exists to prevent.
+- **Weave it in.** Each statutory figure that moves a flag also appears as a cited finding in
+  the dimension it feeds (per the checklist), not only in the `tables` block. A trend that sits
+  unmentioned in the dimension narrative will be missed by a committee reader skimming the flags.
 - **Respect the platform.** Pull what's needed for this submission's file; do not bulk-export
   or scrape beyond the deal at hand.
 

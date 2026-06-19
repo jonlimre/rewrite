@@ -1,6 +1,6 @@
 ---
 name: resus
-description: Run sourced counterparty due diligence on a reinsurance submission's cedent, MGA, and TPA. Resolves each entity (with a confirmation gate), runs cited + adversarially-verified open-web research (financial distress, controversial leadership, partner-relationship problems, ongoing/settled litigation, customer reviews, other relevant intel), and pulls S&P Capital IQ financials (P&C statutory financial highlights and Schedule P loss-ratio reserves) via an interactive browser session. Produces a standalone, fully-cited PDF diligence report. Use when the user asks to "run resus", "vet the cedent/MGA/TPA", "do due diligence on this submission", "background-check the counterparties", "research this cedent", or "are these counterparties safe to write". Produces diligence_report.pdf.
+description: Run sourced counterparty due diligence on a reinsurance submission's cedent, MGA, and TPA. Resolves each entity (with a confirmation gate), runs cited + adversarially-verified open-web research (financial distress, controversial leadership, partner-relationship problems, ongoing/settled litigation, customer reviews, other relevant intel), and pulls S&P Capital IQ statutory financials (financial highlights, RBC/capital adequacy, reinsurance recoverables, investments, and Schedule P reserves) via an interactive browser session. Produces a standalone, fully-cited PDF diligence report. Use when the user asks to "run resus", "vet the cedent/MGA/TPA", "do due diligence on this submission", "background-check the counterparties", "research this cedent", or "are these counterparties safe to write". Produces diligence_report.pdf.
 argument-hint: "[path-to-submission-folder | Reference code | entity names]"
 allowed-tools: Read Glob Grep Bash Skill Workflow AskUserQuestion Write WebSearch WebFetch mcp__Claude_in_Chrome__list_connected_browsers mcp__Claude_in_Chrome__select_browser mcp__Claude_in_Chrome__tabs_context_mcp mcp__Claude_in_Chrome__navigate mcp__Claude_in_Chrome__find mcp__Claude_in_Chrome__computer mcp__Claude_in_Chrome__javascript_tool mcp__Claude_in_Chrome__get_page_text mcp__Claude_in_Chrome__read_page mcp__Claude_in_Chrome__read_network_requests mcp__Claude_in_Chrome__resize_window
 ---
@@ -118,21 +118,27 @@ rules still apply to whatever comes back. Build each dimension object: a `flag`,
 Capital IQ Pro tab via the **Claude in Chrome** MCP. **Extract each report's data by reading the
 grid's DOM with `javascript_tool`** (the snippet is in the playbook) — *not* by screen-grabbing
 row by row; the grids are full HTML tables in a same-origin iframe, so one JS call returns every
-row exactly (screenshots are a fallback only). For an insurer/carrier (e.g. the cedent), the
-**standard pull** is:
-- **P&C Financial Highlights** (Financials ▸ U.S. Statutory) across **three periods — latest
-  quarter, latest year-end, prior year-end**.
-- **Schedule P** (U.S. P&C Schedule P Reserves) — **filter to the submission's line of business
-  first** (e.g. Commercial Auto Liability), then capture **both Incurred and Paid loss ratios**
-  plus the **reserve development** (`% of initial` and paid payout pattern).
-- **Reinsurance recoverables** (cession + unauthorized/collateral exposure), **RBC & capital
-  adequacy** (+ IRIS if available), and **Investments** (asset mix, yield).
+row exactly (screenshots are a fallback only).
+
+For a carrier (the cedent / any risk-bearing entity), the playbook's **S&P coverage checklist**
+defines five **mandatory** categories: **P&C Financial Highlights**, **RBC & Capital Adequacy**,
+**Reinsurance recoverables / Relationships**, **Investments (P&C Investment Analysis)**, and
+**Schedule P** (LOB-filtered). Two rules make this comprehensive rather than ad-hoc:
+
+- **No silent skip.** Each category ends as a transcribed table **or** a logged reason it was
+  not captured (e.g. Schedule P "NM — ~100% ceded"). A category dropped without a reason —
+  Investment Analysis is the easy one to forget — is a defect. Walk the checklist before moving on.
+- **Weave it into the dimensions.** Each category feeds a research dimension (Highlights/RBC/
+  Investments/Schedule-P → `financial_distress`; recoverables → `partners`; growth & mix →
+  `other`). Lift the figures that move a flag into a **cited finding in that dimension**
+  (`assessment: "single-source"`, S&P as the source) — the `sp_financials` tables are the
+  auditable backup, the dimension is where the number informs the call.
 
 Transcribe verbatim into `sp_financials.tables` (columns + rows) and **call out concerning
 trends/outliers** in each table's `commentary` (loss year, yield compression, liquidity decline,
-adverse reserve development, heavy unauthorized cession, etc.). Capture `source_url` + `captured`
-date. If an entity isn't covered (e.g. a private MGA/TPA with no statutory data), set
-`available: false` with a reason.
+adverse reserve development, heavy unauthorized cession, below-investment-grade asset share,
+etc.). Capture `source_url` + `captured` date. If an entity isn't covered at all (e.g. a private
+MGA/TPA with no statutory data), set `available: false` with a reason.
 
 ### 6. Adversarial verification pass
 

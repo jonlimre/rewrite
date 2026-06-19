@@ -146,10 +146,14 @@ Use these six keys (omit a dimension only if truly N/A — prefer including it w
 
 Preferred form is **`tables`** — one or more multi-period tables transcribed from Capital IQ,
 each with its own `commentary` calling out **concerning trends/outliers**. For a carrier, the
-standard set (see `sp_capitaliq_playbook.md`) is: **P&C Financial Highlights** (three periods —
-latest quarter, latest year-end, prior year-end), **RBC & solvency**, **Reinsurance
-recoverables & cession**, **Investments**, and **Schedule P** — filtered to the submission's
-line of business and capturing **both Incurred and Paid loss ratios** plus reserve development.
+playbook's checklist (see `sp_capitaliq_playbook.md`) makes **five categories mandatory**: **P&C
+Financial Highlights** (three periods — latest quarter, latest year-end, prior year-end), **RBC
+& Capital Adequacy**, **Reinsurance recoverables & cession**, **Investments** (asset mix, yield,
+credit quality), and **Schedule P** — filtered to the submission's line of business and
+capturing **both Incurred and Paid loss ratios** plus reserve development. Each category is a
+table **or** carries a logged reason it was skipped (e.g. Schedule P "NM — ~100% ceded"); a
+silent omission is a defect. The figures that move a flag also belong in the relevant
+`dimensions[]` finding, with S&P as the cited source — not only here.
 
 ```json
 {
